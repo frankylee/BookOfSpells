@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Book of Spells &amp; Illumination</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -17,17 +18,17 @@
                 </button>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item mx-2 active">
+                        <li class="nav-item mx-2">
                             <a class="nav-link" asp-area="" asp-controller="home" asp-action="index">Featured Spells <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="spellbook" asp-action="index">Visit the Spellbook</a>
+                            <a class="nav-link" asp-area="" asp-controller="spellbook" asp-action="index">Visit the Spellbook</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="spellbook" asp-action="castspell">Cast a Spell</a>
+                            <a class="nav-link" asp-area="" asp-controller="spellbook" asp-action="castspell">Cast a Spell</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="contact">Send a Raven</a>
+                            <a class="nav-link" asp-area="" asp-controller="home" asp-action="contact">Send a Raven</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
@@ -38,29 +39,73 @@
             </div>
         </nav>
     </header>
+
+
     <main role="main" class="pb-3">
         <div class="container-fluid mb-5">
             @RenderBody()
         </div>
     </main>
 
+
     <section class="mx-sm-3 mb-5">
         <div class="jumbotron bg-darkgray text-center text-light">
-            <div class="row align-items-center justify-content-around mx-0 px-sm-5">
-                <p class="h2 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mx-sm-2" type="email" placeholder="email" aria-label="Email address">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0 px-4" type="submit">Signup</button>
-                </form>
+            <div class="row align-items-center mx-0 px-sm-5">
+                <div class="col-12">
+                    <p class="h2 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+                </div>
+                <div class="col-12">
+                    <form class="input-group justify-content-center">
+                        <input type="text" class="form-control" placeholder="Email" aria-label="Email address">
+                        <div class="input-group-append">
+                            <button class="btn bg-lightgray" type="submit">Signup</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="border-top footer text-muted">
+
+    <footer class="text-muted small pt-4 mb-4">
         <div class="container-fluid">
-            &copy; 2020 - Book of Spells &amp; Illumination - <a asp-area="" asp-controller="home" asp-action="privacy">Privacy</a>
+            <div class="row align-items-center">
+                <div class="col-12 col-sm-4 mb-4">
+                    <nav class="nav flex-column small">
+                        <a class="nav-link py-1" asp-area="" asp-controller="home" asp-action="index">Featured Spells</a>
+                        <a class="nav-link py-1" asp-area="" asp-controller="spellbook" asp-action="index">Visit the Spellbook</a>
+                        <a class="nav-link py-1" asp-area="" asp-controller="spellbook" asp-action="castspell">Cast a Spell</a>
+                        <a class="nav-link py-1" asp-area="" asp-controller="home" asp-action="contact">Contact</a>
+                        <a class="nav-link py-1" asp-area="" asp-controller="home" asp-action="privacy">Privacy</a>
+                    </nav>
+                </div>
+                <div class="col text-center mb-4">
+                    <div class="row align-items-center h2 text-dark justify-content-center">
+                        <div class="col-auto">
+                            <i class="fa fa-facebook"></i>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-twitter"></i>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-linkedin"></i>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-instagram"></i>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-github"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-right mb-4">
+                    &copy; 2020 - Book of Spells &amp; Illumination.
+                </div>
+            </div>
         </div>
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

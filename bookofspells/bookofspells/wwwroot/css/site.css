@@ -11,9 +11,15 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #222;
-  text-transform: uppercase;
+a,
+.navbar-light .navbar-nav .nav-link {
+    color: #222;
+    text-transform: uppercase;
+}
+
+a:hover,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #666;
 }
 
 main a {
@@ -21,10 +27,11 @@ main a {
     font-size: 1rem;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.btn.bg-darkgray:hover {
+  background-color: #333;
+}
+.btn.bg-lightgray:hover {
+    background-color: #aaa;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -68,8 +75,6 @@ html {
 }
 
 body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
     font-weight: 200;
     font-size: 1.5rem;
     color: #222;
@@ -84,18 +89,19 @@ button {
     text-transform: uppercase;
 }
 
+main section.mb-5 {
+    margin-bottom: 6rem !important;
+}
+
+.small {
+    font-weight: inherit;
+}
+
 .bg-darkgray {
     background-color: #555555;
 }
 .bg-lightgray {
     background-color: #e5e5e5;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  line-height: 60px; /* Vertically center the text there */
 }
 
 
@@ -105,16 +111,16 @@ button {
 .jumbotron {
     border-radius: 0;
 }
-#jumbo-text {
-    padding-left: 3rem;
-    word-break: break-word;
-}
 #jumbo-img img {
     max-height: 600px;
 }
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 100;
+}
+h3, h4, h5, h6,
+.h3, .h4, .h5, .h6 {
     font-weight: 200;
 }
 h1, .h1 {
@@ -122,6 +128,19 @@ h1, .h1 {
 }
 h2, .h2 {
     font-size: 2.25rem;
+}
+
+
+/*
+    FORM ELEMENTS
+*/
+form#createSpell,
+form#contact {
+    max-width: 600px;
+}
+.form-control {
+    width: 100%;
+    max-width: 600px;
 }
 
 

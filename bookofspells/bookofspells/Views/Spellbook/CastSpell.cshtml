@@ -1,7 +1,109 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Home Page";
 }
 
-<h1>Cast a new spell!</h1>
+
+<section class="container pt-5 mb-5">
+    <h1 class="mb-4">Tempor nostrud magna aliqua.</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.
+    </p>
+</section>
+
+
+<section class="container mb-5">
+    <form id="createSpell">
+        <div class="form-group">
+            <label for="title" class="sr-only">Spellname</label>
+            <input type="text" class="form-control form-control-lg" id="title" placeholder="Spellname" required>
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="enchantment" class="sr-only">Written enchantment</label>
+            <textarea type="text" class="form-control form-control-lg" id="enchantment" rows="13" placeholder="Written enchantment" required></textarea>
+        </div>
+
+        <div class="form-group row mb-5">
+            <div class="col-6 col-sm-4 mb-4">
+                <fieldset class="form-group">
+                    <legend>Intention:</legend>
+                    <div class="form-check small mb-1">
+                        <input class="form-check-input mt-2" type="checkbox" value="protection" id="protection">
+                        <label class="form-check-label" for="protection">
+                            Protection
+                        </label>
+                    </div>
+                    <div class="form-check small mb-1">
+                        <input class="form-check-input mt-2" type="checkbox" value="knowledge" id="knowledge">
+                        <label class="form-check-label" for="knowledge">
+                            Knowledge
+                        </label>
+                    </div>
+                    <div class="form-check small mb-1">
+                        <input class="form-check-input mt-2" type="checkbox" value="power" id="power">
+                        <label class="form-check-label" for="power">
+                            Power
+                        </label>
+                    </div>
+                    <div class="form-check small mb-1">
+                        <input class="form-check-input mt-2" type="checkbox" value="wealth" id="wealth">
+                        <label class="form-check-label" for="wealth">
+                            Wealth
+                        </label>
+                    </div>
+                    <div class="form-check small mb-1">
+                        <input class="form-check-input mt-2" type="checkbox" value="love" id="love">
+                        <label class="form-check-label" for="love">
+                            Love
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="col-6 col-sm-4">
+                <fieldset class="form-group">
+                    <legend>Magic type:</legend>
+                    <div class="form-check small mb-1">
+                        <input class="form-check-input mt-2" type="radio" name="magicType" value="black" id="blackMagic" required>
+                        <label class="form-check-label" for="blackMagic">
+                            Black
+                        </label>
+                    </div>
+                    <div class="form-check small mb-1">
+                        <input class="form-check-input mt-2" type="radio" name="magicType" value="white" id="whiteMagic" required>
+                        <label class="form-check-label" for="whiteMagic">
+                            White
+                        </label>
+                    </div>
+                    <div class="form-check small mb-1">
+                        <input class="form-check-input mt-2" type="radio" name="magicType" value="grey" id="greyMagic" required>
+                        <label class="form-check-label" for="greyMagic">
+                            Grey
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="col-6 col-sm-4 mb-4">
+                <div class="form-group small">
+                    <label for="imageUpload">Upload image</label>
+                    <input type="file" class="form-control-file small" id="imageUpload">
+                </div>
+            </div>
+  
+            <div class="col-6 align-self-center">
+                <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">&#64;</div>
+                    </div>
+                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username" required>
+                </div>
+            </div>
+
+            <div class="col text-right">
+                <button class="btn bg-darkgray text-light py-2 px-sm-4" href="" type="submit">Cast new spell</button>
+            </div>
+        </div>
+    </form>
+</section>
