@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿
+// Prevent page reload from jumping to top when visitor
+// submits email address in the newsletter signup block.
+// Credit: http://www.codestore.net/store.nsf/unid/BLOG-20110427-0501
+//
+function jumpTo() {
+    $(document).ready(function () {
+        var anchor = 'newsletterSignup';
+        $(this).scrollTop($('#' + anchor).position().top)
+    });
+}

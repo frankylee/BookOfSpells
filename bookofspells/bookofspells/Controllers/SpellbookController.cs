@@ -17,5 +17,10 @@ namespace bookofspells.Controllers
         {
             return View();
         }
+
+        public IActionResult Enchantment()
+        {
+            return View();
+        }
     }
 }

@@ -4,13 +4,6 @@ nav {
     font-size: 1.2rem;
 }
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
 a,
 .navbar-light .navbar-nav .nav-link {
     color: #222;
@@ -18,7 +11,7 @@ a,
 }
 
 a:hover,
-.navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .nav-link:hover {
     color: #666;
 }
 
@@ -26,19 +19,24 @@ main a {
     text-decoration: underline;
     font-size: 1rem;
 }
+main a.btn {
+    text-decoration: none;
+}
 
 .btn.bg-darkgray:hover {
-  background-color: #333;
+    background-color: #333;
+    color: #f8f9fa !important;
 }
 .btn.bg-lightgray:hover {
     background-color: #aaa;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+/*.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -51,21 +49,21 @@ html {
   }
 }
 
-.border-top {
+/*.border-top {
   border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
-}
+}*/
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
-
+/*
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ContactForm
+@{
+    ViewData["Title"] = "Send a Raven (Contact)";
 }
 
 
@@ -11,7 +13,12 @@
 
 
 <section class="container mb-5">
-    <form id="contact">
+    @if (Model != null)
+    {
+        <p class="h3 mb-5">A raven has delivered your message!</p>
+    }
+
+    <form id="contact" method="post">
         <div class="form-group">
             <label for="name" class="sr-only">Your name</label>
             <input type="text" class="form-control form-control-lg" id="name" placeholder="Name" required>
@@ -33,7 +40,7 @@
         </div>
 
         <div class="text-right">
-            <button class="btn bg-darkgray text-light py-2 px-sm-4" href="" type="submit">Send raven</button>
+            <button class="btn bg-darkgray text-light py-2 px-sm-4" type="submit">Send raven</button>
         </div>
     </form>
 </section>

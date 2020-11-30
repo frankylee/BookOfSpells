@@ -23,9 +23,21 @@ namespace bookofspells.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(NewsletterSignup n)
+        {
+            return View(n);
+        }
+
         public IActionResult Contact()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contact(ContactForm c)
+        {
+            return View(c);
         }
 
         public IActionResult Privacy()

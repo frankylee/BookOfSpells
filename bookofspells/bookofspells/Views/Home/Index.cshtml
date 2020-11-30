@@ -1,6 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model NewsletterSignup
+@{
+    ViewData["Title"] = "Featured Spells";
 }
+
 
 <section class="jumbotron bg-white mb-5 pr-md-0">
     <div class="row align-items-center justify-content-end">
@@ -8,14 +10,15 @@
             <h1>Lorem ipsum dolor sit amet, tempornostrud magna aliqua.</h1>
         </div>
         <div id="jumbo-img" class="col-12 col-md-7">
-            <img src="~/img/devil-goat-with-sacred-geometry.png" class="img-fluid border" alt="" aria-hidden="true" />
+            <img src="~/img/devil-goat-with-sacred-geometry.png" class="img-fluid" alt="display image" aria-hidden="true" />
         </div>
     </div>
 </section>
 
 <section class="container mb-5">
     <h2 class="mb-4">Tempor nostrud magna aliqua.</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.
     </p>
 </section>
 
@@ -35,7 +38,7 @@
         {
             <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Card image cap">
+                    <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
                         <h4 class="card-title">Excepteur Sint Occaecat</h4>
                         <p class="card-text">
@@ -54,9 +57,47 @@
 
 <section class="container bg-lightgray mb-5 p-5">
     <h2 class="mb-4">Tempor nostrud magna aliqua.</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.
     </p>
     <div class="text-right">
-        <button class="btn bg-darkgray text-light px-4 py-2">Cast a spell</button>
+        <a class="btn bg-darkgray text-light px-4 py-2" asp-area="" asp-controller="spellbook" asp-action="castspell">
+            Cast a spell
+        </a>
     </div>
 </section>
+
+
+<section id="newsletterSignup" class="mx-sm-3 mb-5">
+    <div class="jumbotron bg-darkgray text-center text-light">
+        <div class="row align-items-center mx-0 px-sm-5">
+            <div class="col-12">
+                <p class="h2 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+            </div>
+            <div class="col-12">
+                <form method="post" class="input-group justify-content-center">
+                    <input type="email" class="form-control" placeholder="Email" aria-label="Email address" required>
+                    <div class="input-group-append">
+                        <button class="btn bg-lightgray" type="submit">Signup</button>
+                    </div>
+                </form>
+                @if (Model != null)
+                {
+                    <p class="h3 mt-4">Registration successful!</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@*
+    // THIS WORKS IF AT THE END OF _Layout.cshtml
+
+    @if (Model != null)
+    {
+        <script>jumpTo();</script>
+    }
+*@
