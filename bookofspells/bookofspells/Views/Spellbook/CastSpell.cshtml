@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Spell;
+@{
     ViewData["Title"] = "Cast a Spell";
 }
 
@@ -12,15 +13,15 @@
 
 
 <section class="container mb-5">
-    <form id="createSpell">
+    <form id="createSpell" method="post">
         <div class="form-group">
             <label for="title" class="sr-only">Spellname</label>
-            <input type="text" class="form-control form-control-lg" id="title" placeholder="Spellname" required>
+            <input type="text" asp-for="Title" class="form-control form-control-lg" id="title" placeholder="Spellname" required>
         </div>
 
         <div class="form-group mb-5">
             <label for="enchantment" class="sr-only">Written enchantment</label>
-            <textarea type="text" class="form-control form-control-lg" id="enchantment" rows="13" placeholder="Written enchantment" required></textarea>
+            <textarea type="text" asp-for="Enchantment" class="form-control form-control-lg" id="enchantment" rows="13" placeholder="Written enchantment" required></textarea>
         </div>
 
         <div class="form-group row mb-5">
@@ -28,31 +29,31 @@
                 <fieldset class="form-group">
                     <legend>Intention:</legend>
                     <div class="form-check small mb-1">
-                        <input class="form-check-input mt-2" type="checkbox" value="protection" id="protection">
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Protection" id="protection" required>
                         <label class="form-check-label" for="protection">
                             Protection
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input class="form-check-input mt-2" type="checkbox" value="knowledge" id="knowledge">
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Knowledge" id="knowledge" required>
                         <label class="form-check-label" for="knowledge">
                             Knowledge
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input class="form-check-input mt-2" type="checkbox" value="power" id="power">
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Power" id="power" required>
                         <label class="form-check-label" for="power">
                             Power
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input class="form-check-input mt-2" type="checkbox" value="wealth" id="wealth">
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Wealth" id="wealth" required>
                         <label class="form-check-label" for="wealth">
                             Wealth
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input class="form-check-input mt-2" type="checkbox" value="love" id="love">
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Love" id="love" required>
                         <label class="form-check-label" for="love">
                             Love
                         </label>
@@ -64,19 +65,19 @@
                 <fieldset class="form-group">
                     <legend>Magic type:</legend>
                     <div class="form-check small mb-1">
-                        <input class="form-check-input mt-2" type="radio" name="magicType" value="black" id="blackMagic" required>
+                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="Black" id="blackMagic" required>
                         <label class="form-check-label" for="blackMagic">
                             Black
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input class="form-check-input mt-2" type="radio" name="magicType" value="white" id="whiteMagic" required>
+                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="White" id="whiteMagic" required>
                         <label class="form-check-label" for="whiteMagic">
                             White
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input class="form-check-input mt-2" type="radio" name="magicType" value="grey" id="greyMagic" required>
+                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="Grey" id="greyMagic" required>
                         <label class="form-check-label" for="greyMagic">
                             Grey
                         </label>
@@ -87,17 +88,17 @@
             <div class="col-6 col-sm-4 mb-4">
                 <div class="form-group small">
                     <label for="imageUpload">Upload image</label>
-                    <input type="file" class="form-control-file small" id="imageUpload">
+                    <input asp-for="Filename" type="file" class="form-control-file small" id="imageUpload">
                 </div>
             </div>
-  
+
             <div class="col-6 align-self-center">
                 <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">&#64;</div>
                     </div>
-                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username" required>
+                    <input asp-for="User.Username" type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username" required>
                 </div>
             </div>
 
@@ -107,3 +108,17 @@
         </div>
     </form>
 </section>
+
+
+@if (ViewBag.Spell != null)
+{
+    @if (ViewBag.Spell.Title != null)
+    {
+        <h1>@ViewBag.Spell.Title</h1>
+        <p>@ViewBag.Spell.Enchantment</p>
+        <p>@ViewBag.Spell.Intention</p>
+        <p>@ViewBag.Spell.MagicType</p>
+        <p>@ViewBag.Spell.User.Username</p>
+        @*<p>@ViewBag.Spell.FileName</p>*@
+    }
+}

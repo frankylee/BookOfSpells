@@ -26,7 +26,8 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult Index(NewsletterSignup n)
         {
-            return View(n);
+            ViewBag.Registration = n;
+            return View();
         }
 
         public IActionResult Contact()
@@ -35,13 +36,22 @@ namespace bookofspells.Controllers
         }
 
         [HttpPost]
-        public IActionResult Contact(ContactForm c)
+        public IActionResult Contact(ContactForm c, NewsletterSignup n)
         {
-            return View(c);
+            ViewBag.Message = c;
+            ViewBag.Registration = n;
+            return View();
         }
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Privacy(NewsletterSignup n)
+        {
+            ViewBag.Registration = n;
             return View();
         }
 

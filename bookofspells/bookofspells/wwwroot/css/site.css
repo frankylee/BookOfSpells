@@ -133,7 +133,7 @@ h2, .h2 {
     FORM ELEMENTS
 */
 form#createSpell,
-form#contact {
+form#message {
     max-width: 600px;
 }
 .form-control {

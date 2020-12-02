@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model NewsletterSignup;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -48,6 +50,32 @@
     </main>
 
 
+    <section id="newsletterSignup" class="mx-sm-3 mb-5">
+        <div class="jumbotron bg-darkgray text-center text-light">
+            <div class="row align-items-center mx-0 px-sm-5">
+                <div class="col-12">
+                    <p class="h2 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+                </div>
+                <div class="col-12">
+                    <form method="post" class="input-group justify-content-center">
+                        <input type="email" asp-for="EmailAddress" class="form-control" placeholder="Email" aria-label="Email address" required>
+                        <div class="input-group-append">
+                            <button class="btn bg-lightgray" type="submit">Signup</button>
+                        </div>
+                    </form>
+                    @if (ViewBag.Registration != null)
+                     {
+                        @if (ViewBag.Registration.EmailAddress != null)
+                         {
+                            <p class="h3 mt-4">Registration successful!</p>
+                         }
+                     }
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <footer class="border-top text-muted small pt-4 mb-4">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -56,7 +84,7 @@
                         <a class="nav-link py-1" asp-area="" asp-controller="home" asp-action="index">Featured Spells</a>
                         <a class="nav-link py-1" asp-area="" asp-controller="spellbook" asp-action="index">Visit the Spellbook</a>
                         <a class="nav-link py-1" asp-area="" asp-controller="spellbook" asp-action="castspell">Cast a Spell</a>
-                        <a class="nav-link py-1" asp-area="" asp-controller="home" asp-action="contact">Contact</a>
+                        <a class="nav-link py-1" asp-area="" asp-controller="home" asp-action="contact">Send a Raven</a>
                         <a class="nav-link py-1" asp-area="" asp-controller="home" asp-action="privacy">Privacy</a>
                     </nav>
                 </div>
@@ -91,5 +119,13 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+    
+    @if (ViewBag.Registration != null)
+    {
+        if (ViewBag.Registration.EmailAddress != null)
+        {
+            <script>jumpTo('newsletterSignup');</script>
+        }
+    }
 </body>
 </html>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace bookofspells.Models
 {
     public class Spell
@@ -12,8 +14,8 @@ namespace bookofspells.Models
 
         // Users can create new spells to add to the Spellbook.
         // Image upload is the only optional field.
-
-        public int SpellID { get; }  // primary key
+        [Key]
+        public int SpellID { get; set; }  // primary key
         public string Title { get; set; }
         public string Enchantment { get; set; }
         public string Intention { get; set; }

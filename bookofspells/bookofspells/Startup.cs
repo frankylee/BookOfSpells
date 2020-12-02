@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using bookofspells.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,10 +27,17 @@ namespace bookofspells
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            // Inject repositories into controller
+            services.AddTransient<ISpellRepository, SpellRepository>();  // <Repo interface, Repo class>
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                services.AddDbContext<BookOfSpellsContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
+            else
+                services.AddDbContext<BookOfSpellsContext>(options => options.UseSqlite(Configuration["ConnectionString:SQLite"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BookOfSpellsContext ctx)
         {
             if (env.IsDevelopment())
             {
@@ -52,6 +62,9 @@ namespace bookofspells
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // Use SeedData if database is empty.
+            SeedData.Seed(ctx);
         }
     }
 }
