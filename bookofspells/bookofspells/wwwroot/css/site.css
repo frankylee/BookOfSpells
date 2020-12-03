@@ -111,6 +111,7 @@ main section.mb-5 {
 }
 #jumbo-img img {
     max-height: 600px;
+    object-fit: cover;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -148,7 +149,7 @@ form#message {
 .card-text {
     font-size: 1.25rem;
 }
-.echantment-text,
+.enchantment-text,
 .card-text {
     white-space: pre-line;
 }

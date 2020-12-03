@@ -16,11 +16,11 @@
     <h2 class="mb-4">White Magic</h2>
 
     <div class="row">
-        @for (int i = 0; i < ViewBag.Black.Count; i++)
+        @for (int i = 0; i < ViewBag.White.Count; i++)
         {
             <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
+                    <img class="card-img-top" src="~/img/@ViewBag.White[i].Filename" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
                         <h4 class="card-title">@ViewBag.White[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.White[i].Enchantment</p>
@@ -47,7 +47,7 @@
         {
             <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
+                    <img class="card-img-top" src="~/img/@ViewBag.Grey[i].Filename" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
                         <h4 class="card-title">@ViewBag.Grey[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.Grey[i].Enchantment</p>
@@ -74,7 +74,7 @@
         {
             <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
+                    <img class="card-img-top" src="~/img/@ViewBag.Black[i].Filename" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
                         <h4 class="card-title">@ViewBag.Black[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.Black[i].Enchantment</p>

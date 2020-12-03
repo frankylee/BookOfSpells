@@ -9,13 +9,23 @@
         <div class="col-12 col-md-5 col-lg-4">
             <h1>@ViewBag.Spell.Title</h1>
         </div>
-        <div id="jumbo-img" class="col-12 col-md-7">
-            <img src="~/img/devil-goat-with-sacred-geometry.png" class="img-fluid" alt="spell image" aria-hidden="true" />
+        <div id="jumbo-img" class="col-12 col-md-7 order-first order-md-12 mb-5 mb-md-0">
+            <img src="~/img/@ViewBag.Spell.Filename" class="img-fluid" alt="spell image" aria-hidden="true" />
         </div>
     </div>
 </section>
 
 <section class="container mb-5">
     <h2 class="mb-4">@ViewBag.Spell.MagicType @ViewBag.Spell.Intention Spell</h2>
-    <p class="enchantment-text">@ViewBag.Spell.Enchantment</p>
+    <p class="enchantment-text mb-5">@ViewBag.Spell.Enchantment</p>
+
+    <div class="row text-uppercase small">
+        <div class="col">
+            <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Spell.MagicType</span>
+            <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Spell.Intention</span>
+        </div>
+        <div class="col">
+            <p>Cast by: @ViewBag.Spell.User.Username</p>
+        </div>
+    </div>
 </section>

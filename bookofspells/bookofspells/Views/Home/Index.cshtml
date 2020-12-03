@@ -4,12 +4,12 @@
 }
 
 
-<section class="jumbotron bg-white mb-5 pr-md-0">
+<section class="jumbotron bg-white mb-sm-5 pr-md-0">
     <div class="row align-items-center justify-content-end">
-        <div class="col-12 col-md-5 col-lg-4">
+        <div class="col offset-lg-1">
             <h1>Lorem ipsum dolor sit amet, tempornostrud magna aliqua.</h1>
         </div>
-        <div id="jumbo-img" class="col-12 col-md-7">
+        <div id="jumbo-img" class="col-12 col-md-7 order-first order-md-12 mb-5 mb-md-0">
             <img src="~/img/devil-goat-with-sacred-geometry.png" class="img-fluid" alt="display image" aria-hidden="true" />
         </div>
     </div>
@@ -38,7 +38,7 @@
         {
             <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
+                    <img class="card-img-top" src="~/img/@ViewBag.Spell[i].Filename" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
                         <h4 class="card-title">@ViewBag.Spell[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.Spell[i].Enchantment</p>
