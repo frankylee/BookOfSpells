@@ -42,6 +42,7 @@ namespace bookofspells.Controllers
             return View();
         }
 
+
         public IActionResult Contact()
         {
             return View();
@@ -58,6 +59,7 @@ namespace bookofspells.Controllers
             return View();
         }
 
+
         public IActionResult Privacy()
         {
             return View();
@@ -71,6 +73,7 @@ namespace bookofspells.Controllers
             signupRepo.AddSignup(n);
             return View();
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

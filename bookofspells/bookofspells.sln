@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.808.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bookofspells", "bookofspells\bookofspells.csproj", "{AF1D1B1B-1010-4184-B752-E932DC5735B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bookofspellsTests", "bookofspellsTests\bookofspellsTests.csproj", "{31CCFFBE-9546-4CAC-830B-56C17C5BE490}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AF1D1B1B-1010-4184-B752-E932DC5735B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF1D1B1B-1010-4184-B752-E932DC5735B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF1D1B1B-1010-4184-B752-E932DC5735B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CCFFBE-9546-4CAC-830B-56C17C5BE490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CCFFBE-9546-4CAC-830B-56C17C5BE490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CCFFBE-9546-4CAC-830B-56C17C5BE490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CCFFBE-9546-4CAC-830B-56C17C5BE490}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
