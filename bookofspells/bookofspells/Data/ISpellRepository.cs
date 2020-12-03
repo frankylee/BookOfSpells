@@ -11,7 +11,7 @@ namespace bookofspells.Data
 
         // Retrieve
         IQueryable<Spell> Spell { get; }
-        Spell GetTitle(string title);
+        Spell GetSpellTitle(string title);
 
         // Update
 

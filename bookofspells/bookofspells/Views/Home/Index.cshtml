@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Spell>;
+@{
     ViewData["Title"] = "Featured Spells";
 }
 
@@ -33,18 +34,20 @@
     </div>
 
     <div class="row">
-        @for (int i = 0; i < 12; i++)
+        @for (int i = 0; i < ViewBag.Spell.Count; i++)
         {
             <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card">
                     <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
-                        <h4 class="card-title">Excepteur Sint Occaecat</h4>
-                        <p class="card-text">
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut...
-                        </p>
-                        <div class="text-right">
-                            <a href="#" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                        <h4 class="card-title">@ViewBag.Spell[i].Title</h4>
+                        <p class="card-text overflow">@ViewBag.Spell[i].Enchantment</p>
+                        <div class="text-right mb-3">
+                            <a href="spellbook/enchantment?title=@ViewBag.Spell[i].Title" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                        </div>
+                        <div class="text-uppercase small">
+                            <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Spell[i].MagicType</span>
+                            <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Spell[i].Intention</span>
                         </div>
                     </div>
                 </div>

@@ -68,8 +68,8 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -143,8 +143,29 @@ form#message {
 
 
 /*
-    SPELL CARDS
+    SPELL FORMATTING
 */
 .card-text {
     font-size: 1.25rem;
+}
+.echantment-text,
+.card-text {
+    white-space: pre-line;
+}
+
+/* The following overflow styles format the spell cards
+   to display limited content with an ellipses.
+   Credit: https://css-tricks.com/line-clampin/
+*/
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.overflow {
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }

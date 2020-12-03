@@ -10,10 +10,12 @@ namespace bookofspells.Controllers
 {
     public class SpellbookController : Controller
     {
+        INewsletterSignup signupRepo;
         ISpellRepository spellRepo;
 
-        public SpellbookController(ISpellRepository s)
+        public SpellbookController(INewsletterSignup n, ISpellRepository s)
         {
+            signupRepo = n;
             spellRepo = s;
         }
 
@@ -21,7 +23,6 @@ namespace bookofspells.Controllers
         public IActionResult Index()
         {
             List<Spell> spells = spellRepo.Spell.OrderByDescending(s => s.SpellID).ToList();
-            //ViewBag.Spell = spells;
             ViewBag.Black = spells.Where(s => s.MagicType == "Black").ToList();
             ViewBag.Grey = spells.Where(s => s.MagicType == "Grey").ToList();
             ViewBag.White = spells.Where(s => s.MagicType == "White").ToList();
@@ -32,6 +33,8 @@ namespace bookofspells.Controllers
         public IActionResult Index(NewsletterSignup n)
         {
             ViewBag.Registration = n;
+            // save to database
+            signupRepo.AddSignup(n);
             return View();
         }
 
@@ -47,24 +50,39 @@ namespace bookofspells.Controllers
         {
             ViewBag.Spell = s;
             ViewBag.Registration = n;
-            // store in database
+            // save to database
+            signupRepo.AddSignup(n);
             spellRepo.AddSpell(s);
             return Redirect("Enchantment");
         }
 
 
 
-        public IActionResult Enchantment()
+        public IActionResult Enchantment(string title)
         {
-            Spell spell = spellRepo.Spell.Last();
-            ViewBag.Spell = spell;
+            Spell s;
+            // if no title is passed, display most recently created spell
+            if (title == null || title == "")
+                s = spellRepo.Spell.ToList().Last();
+            else
+                s = spellRepo.GetSpellTitle(title);
+            ViewBag.Spell = s;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Enchantment(NewsletterSignup n)
+        public IActionResult Enchantment(string title, NewsletterSignup n)
         {
+            Spell s;
+            // if no title is passed, display most recently created spell
+            if (title == null || title == "")
+                s = spellRepo.Spell.ToList().Last();
+            else
+                s = spellRepo.GetSpellTitle(title);
+            ViewBag.Spell = s;
             ViewBag.Registration = n;
+            // save to database
+            signupRepo.AddSignup(n);
             return View();
         }
     }

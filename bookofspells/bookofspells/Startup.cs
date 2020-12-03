@@ -28,8 +28,10 @@ namespace bookofspells
         {
             services.AddControllersWithViews();
             // Inject repositories into controller
-            services.AddTransient<ISpellRepository, SpellRepository>();  // <Repo interface, Repo class>
-
+            services.AddTransient<IContactFormRepository, ContactFormRepository>();
+            services.AddTransient<INewsletterSignup, NewsletterSignupRepository>();
+            services.AddTransient<ISpellRepository, SpellRepository>();
+            
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 services.AddDbContext<BookOfSpellsContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
             else

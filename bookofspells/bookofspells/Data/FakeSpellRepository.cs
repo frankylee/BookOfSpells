@@ -22,7 +22,7 @@ namespace bookofspells.Data
             spells.Add(spell);
         }
 
-        public Spell GetTitle(string title)
+        public Spell GetSpellTitle(string title)
         {
             // find and return the first spell with matching title
             Spell spell = spells.First(s => s.Title == title);

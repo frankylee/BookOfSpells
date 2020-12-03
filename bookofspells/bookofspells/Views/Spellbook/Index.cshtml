@@ -23,9 +23,13 @@
                     <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
                         <h4 class="card-title">@ViewBag.White[i].Title</h4>
-                        <p class="card-text">@ViewBag.White[i].Enchantment</p>
-                        <div class="text-right">
-                            <a href="#" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                        <p class="card-text overflow">@ViewBag.White[i].Enchantment</p>
+                        <div class="text-right mb-3">
+                            <a href="spellbook/enchantment?title=@ViewBag.White[i].Title" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                        </div>
+                        <div class="text-uppercase small">
+                            @*<span class="badge badge-pill badge-dark">@ViewBag.White[i].MagicType</span>*@
+                            <span class="badge badge-pill badge-dark">@ViewBag.White[i].Intention</span>
                         </div>
                     </div>
                 </div>
@@ -46,9 +50,13 @@
                     <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
                         <h4 class="card-title">@ViewBag.Grey[i].Title</h4>
-                        <p class="card-text">@ViewBag.Grey[i].Enchantment</p>
-                        <div class="text-right">
-                            <a href="#" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                        <p class="card-text overflow">@ViewBag.Grey[i].Enchantment</p>
+                        <div class="text-right mb-3">
+                            <a href="spellbook/enchantment?title=@ViewBag.Grey[i].Title" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                        </div>
+                        <div class="text-uppercase small">
+                            @*<span class="badge badge-pill bg-darkgray text-light">@ViewBag.Grey[i].MagicType</span>*@
+                            <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Grey[i].Intention</span>
                         </div>
                     </div>
                 </div>
@@ -69,9 +77,13 @@
                     <img class="card-img-top" src="~/img/devil-goat-with-sacred-geometry.png" alt="Spell image" aria-hidden="true">
                     <div class="card-body">
                         <h4 class="card-title">@ViewBag.Black[i].Title</h4>
-                        <p class="card-text">@ViewBag.Black[i].Enchantment</p>
-                        <div class="text-right">
-                            <a href="#" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                        <p class="card-text overflow">@ViewBag.Black[i].Enchantment</p>
+                        <div class="text-right mb-3">
+                            <a href="spellbook/enchantment?title=@ViewBag.Black[i].Title" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                        </div>
+                        <div class="text-uppercase small">
+                            @*<span class="badge badge-pill bg-darkgray text-light">@ViewBag.Black[i].MagicType</span>*@
+                            <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Black[i].Intention</span>
                         </div>
                     </div>
                 </div>

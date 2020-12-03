@@ -33,10 +33,10 @@ namespace bookofspells.Data
             context.SaveChanges();
         }
 
-        public Spell GetTitle(string title)
+        public Spell GetSpellTitle(string title)
         {
             // find and return the first spell with matching title
-            Spell spell = context.Spell.First(s => s.Title == title);
+            Spell spell = context.Spell.FirstOrDefault(s => s.Title == title);
             return spell;
         }
     }

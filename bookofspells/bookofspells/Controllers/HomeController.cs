@@ -6,27 +6,39 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using bookofspells.Models;
+using bookofspells.Data;
 
 namespace bookofspells.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        IContactFormRepository contactRepo;
+        INewsletterSignup signupRepo;
+        ISpellRepository spellRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IContactFormRepository c, INewsletterSignup n, ISpellRepository s)
         {
             _logger = logger;
+            contactRepo = c;
+            signupRepo = n;
+            spellRepo = s;
         }
 
         public IActionResult Index()
         {
+            List<Spell> s = spellRepo.Spell.OrderByDescending(s => s.SpellID).ToList();
+            ViewBag.Spell = s;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index(NewsletterSignup n)
+        public IActionResult Index(Spell s, NewsletterSignup n)
         {
+            ViewBag.Spell = s;
             ViewBag.Registration = n;
+            // save to database
+            signupRepo.AddSignup(n);
             return View();
         }
 
@@ -40,6 +52,9 @@ namespace bookofspells.Controllers
         {
             ViewBag.Message = c;
             ViewBag.Registration = n;
+            // save to database
+            contactRepo.AddMessage(c);
+            signupRepo.AddSignup(n);
             return View();
         }
 
@@ -52,6 +67,8 @@ namespace bookofspells.Controllers
         public IActionResult Privacy(NewsletterSignup n)
         {
             ViewBag.Registration = n;
+            // save to database
+            signupRepo.AddSignup(n);
             return View();
         }
 
