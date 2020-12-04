@@ -21,12 +21,6 @@ namespace bookofspells.Data
         {
             get
             {
-                // check filename and swap to generator
-                foreach (Spell s in context.Spell)
-                {
-                    s.Filename = CheckFilename(s.Filename);
-                    context.SaveChanges();
-                }
                 // Get all Spell objects in the Spell DBContext
                 // and include the User object
                 return context.Spell.Include(s => s.User);
