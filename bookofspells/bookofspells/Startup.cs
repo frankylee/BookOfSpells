@@ -31,7 +31,7 @@ namespace bookofspells
             services.AddTransient<IContactFormRepository, ContactFormRepository>();
             services.AddTransient<INewsletterSignup, NewsletterSignupRepository>();
             services.AddTransient<ISpellRepository, SpellRepository>();
-            
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 services.AddDbContext<BookOfSpellsContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
             else
