@@ -39,7 +39,7 @@ namespace bookofspells.Data
         public Spell GetSpellTitle(string title)
         {
             // find and return the first spell with matching title
-            Spell spell = context.Spell.Include(s => s.User).FirstOrDefault(s => s.Title == title);
+            Spell spell = context.Spell.Include(s => s.User).FirstOrDefault(s => s.Title.Equals(title));
             return spell;
         }
 

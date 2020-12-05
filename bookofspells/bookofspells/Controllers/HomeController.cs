@@ -33,8 +33,10 @@ namespace bookofspells.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Spell s, NewsletterSignup n)
+        public IActionResult Index(NewsletterSignup n)
         {
+            List<Spell> s = spellRepo.Spell.OrderByDescending(s => s.SpellID).ToList();
+            // send to view
             ViewBag.Spell = s;
             ViewBag.Registration = n;
             // save to database
@@ -51,11 +53,14 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult Contact(ContactForm c, NewsletterSignup n)
         {
+            // save to database
+            if (c.Name != null)
+                contactRepo.AddMessage(c);
+            if (n.EmailAddress != null)
+                signupRepo.AddSignup(n);
+            // send to view
             ViewBag.Message = c;
             ViewBag.Registration = n;
-            // save to database
-            contactRepo.AddMessage(c);
-            signupRepo.AddSignup(n);
             return View();
         }
 
@@ -68,9 +73,67 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult Privacy(NewsletterSignup n)
         {
+            // send to view
             ViewBag.Registration = n;
             // save to database
             signupRepo.AddSignup(n);
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Search(string search, NewsletterSignup n)
+        {
+            List<Spell> results = null;
+            // search database
+            if (search != null)
+            {
+                // convert to lowercase for reliability
+                search = search.ToLower();
+                // search for user
+                results = (from s in spellRepo.Spell
+                           where s.User.Username.ToLower().Contains(search)
+                           select s)
+                           .OrderByDescending(s => s.SpellID)
+                           .ToList();
+                // search magic type
+                if (results.Count == 0)
+                    results = (from s in spellRepo.Spell
+                               where s.MagicType.ToLower().Contains(search)
+                               select s)
+                               .OrderByDescending(s => s.SpellID)
+                               .ToList();
+                // search intention
+                if (results.Count == 0)
+                    results = (from s in spellRepo.Spell
+                               where s.Intention.ToLower().Contains(search)
+                               select s).ToList();
+                // search title
+                if (results.Count == 0)
+                    results = (from s in spellRepo.Spell
+                               where s.Title.ToLower().Contains(search)
+                               select s)
+                               .OrderByDescending(s => s.SpellID)
+                               .ToList();
+                // search enchantment
+                if (results.Count == 0)
+                    results = (from s in spellRepo.Spell
+                               where s.Enchantment.ToLower().Contains(search)
+                               select s)
+                               .OrderByDescending(s => s.SpellID)
+                               .ToList();
+                int num = results.Count == 0 ? 0 : results.Count;
+                ViewBag.Message = "Your search for " + search + " yielded " + num + " results.";
+            }
+            else
+            {
+                ViewBag.Message = "You did not enter a valid search. Please try again.";
+            }
+            if (n.EmailAddress != null)
+                signupRepo.AddSignup(n);
+            // send to view
+            ViewBag.Result = results;
+            ViewBag.Registration = n;
             return View();
         }
 

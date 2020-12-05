@@ -30,7 +30,7 @@ namespace bookofspells.Data
         List<ContactForm> IContactFormRepository.GetByEmail(string email)
         {
             // find and return a list of all messages with matching email
-            List<ContactForm> messagesFromUser = context.ContactForm.Where(m => m.Email == email).ToList();
+            List<ContactForm> messagesFromUser = context.ContactForm.Where(m => m.Email.Equals(email)).ToList();
             return messagesFromUser;
         }
     }

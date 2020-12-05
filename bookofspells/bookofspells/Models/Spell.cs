@@ -5,15 +5,6 @@ namespace bookofspells.Models
 {
     public class Spell
     {
-        //public Spell()
-        //{
-        //    // does default image go here if not specified?
-        //    // or does that happen in View if filename == "" ?
-        //}
-
-
-        // Users can create new spells to add to the Spellbook.
-        // Image upload is the only optional field.
         [Key]
         public int SpellID { get; set; }  // primary key
         public string Title { get; set; }

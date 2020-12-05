@@ -22,6 +22,7 @@ namespace bookofspells.Controllers
 
         public IActionResult Index()
         {
+            // send to view
             List<Spell> spells = spellRepo.Spell.OrderByDescending(s => s.SpellID).ToList();
             ViewBag.Black = spells.Where(s => s.MagicType == "Black").ToList();
             ViewBag.Grey = spells.Where(s => s.MagicType == "Grey").ToList();
@@ -32,6 +33,11 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult Index(NewsletterSignup n)
         {
+            // send to view
+            List<Spell> spells = spellRepo.Spell.OrderByDescending(s => s.SpellID).ToList();
+            ViewBag.Black = spells.Where(s => s.MagicType == "Black").ToList();
+            ViewBag.Grey = spells.Where(s => s.MagicType == "Grey").ToList();
+            ViewBag.White = spells.Where(s => s.MagicType == "White").ToList();
             ViewBag.Registration = n;
             // save to database
             signupRepo.AddSignup(n);
@@ -48,12 +54,21 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult CastSpell(Spell s, NewsletterSignup n)
         {
-            ViewBag.Spell = s;
-            ViewBag.Registration = n;
-            // save to database
-            signupRepo.AddSignup(n);
-            spellRepo.AddSpell(s);
-            return Redirect("Enchantment");
+            // save to database & redirect
+            if (s.Title != null)
+            {
+                spellRepo.AddSpell(s);
+                return Redirect("Enchantment");
+            }
+            // return to view
+            if (n.EmailAddress != null)
+            {
+                signupRepo.AddSignup(n);
+                // send to view
+                ViewBag.Spell = s;
+                ViewBag.Registration = n;               
+            }
+            return View();
         }
 
 
@@ -66,6 +81,7 @@ namespace bookofspells.Controllers
                 s = spellRepo.Spell.ToList().Last();
             else
                 s = spellRepo.GetSpellTitle(title);
+            // send to view
             ViewBag.Spell = s;
             return View();
         }
@@ -79,6 +95,7 @@ namespace bookofspells.Controllers
                 s = spellRepo.Spell.ToList().Last();
             else
                 s = spellRepo.GetSpellTitle(title);
+            // send to view
             ViewBag.Spell = s;
             ViewBag.Registration = n;
             // save to database

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using bookofspells.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace bookofspells.Data
 {
@@ -25,7 +26,7 @@ namespace bookofspells.Data
         public Spell GetSpellTitle(string title)
         {
             // find and return the first spell with matching title
-            Spell spell = spells.First(s => s.Title == title);
+            Spell spell = Spell.Include(s => s.User).FirstOrDefault(s => s.Title.Equals(title));
             return spell;
         }
     }

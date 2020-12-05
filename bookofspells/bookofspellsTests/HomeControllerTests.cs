@@ -48,6 +48,7 @@ namespace bookofspellsTests
                 User = new User() { Username = "Ravinia Blaque" },
                 Filename = "xyzy.jpg"
             };
+            spellRepo.AddSpell(spell);
         }
 
 
@@ -55,7 +56,7 @@ namespace bookofspellsTests
         public void AddNewsletterSignupTest()
         {
             // add email registration
-            controller.Index(spell, email);
+            controller.Index(email);
             // confirm email was added to repo
             NewsletterSignup e = signupRepo.NewsletterSignup.First();
             Assert.Equal(email.EmailAddress, e.EmailAddress);
@@ -72,6 +73,18 @@ namespace bookofspellsTests
             Assert.Equal(message.Email, m.Email);
             Assert.Equal(message.Phone, m.Phone);
             Assert.Equal(message.Message, m.Message);
+        }
+
+        [Fact]
+        public void SearchTest()
+        {
+            // search
+            string search = "Excepteur Sint Occaecat";
+            controller.Search(search, email);
+            // confirm result fetched
+            Spell s = spellRepo.GetSpellTitle(search);
+            Console.WriteLine("SPELL: " + s.Title);
+            Assert.Equal(search, s.Title);
         }
 
     }

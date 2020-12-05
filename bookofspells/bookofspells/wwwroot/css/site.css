@@ -1,46 +1,4 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-nav {
-    font-size: 1.2rem;
-}
-
-a,
-.navbar-light .navbar-nav .nav-link {
-    color: #222;
-    text-transform: uppercase;
-}
-
-a:hover,
-.navbar-light .nav-link:hover {
-    color: #666;
-}
-
-main a {
-    text-decoration: underline;
-    font-size: 1rem;
-}
-main a.btn {
-    text-decoration: none;
-}
-
-.btn.bg-darkgray:hover {
-    background-color: #333;
-    color: #f8f9fa !important;
-}
-.btn.bg-lightgray:hover {
-    background-color: #aaa;
-}
-
-/*.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}*/
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
+﻿html {
   font-size: 14px;
 }
 @media (min-width: 768px) {
@@ -48,25 +6,6 @@ html {
     font-size: 16px;
   }
 }
-
-/*.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}*/
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-/*
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}*/
-
-/* Sticky footer styles
--------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
@@ -91,6 +30,10 @@ main section.mb-5 {
     margin-bottom: 6rem !important;
 }
 
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
 .small {
     font-weight: inherit;
 }
@@ -102,6 +45,42 @@ main section.mb-5 {
     background-color: #e5e5e5;
 }
 
+
+/*
+    NAVIGATION + LINKS
+*/
+nav {
+    font-size: 1.2rem;
+}
+a,
+.navbar-light .navbar-nav .nav-link {
+    color: #222;
+    text-transform: uppercase;
+}
+a:hover,
+.navbar-light .nav-link:hover {
+    color: #666;
+}
+
+main a {
+    text-decoration: underline;
+    font-size: 1rem;
+}
+main a.btn {
+    text-decoration: none;
+}
+
+/*
+    BUTTONS
+*/
+.btn.bg-darkgray:hover {
+    background-color: #333;
+    color: #f8f9fa !important;
+}
+
+.btn.bg-lightgray:hover {
+    background-color: #aaa;
+}
 
 /*
     HEADING SECTIONS
@@ -149,8 +128,7 @@ form#message {
 .card-text {
     font-size: 1.25rem;
 }
-.enchantment-text,
-.card-text {
+.enchantment-text {
     white-space: pre-line;
 }
 

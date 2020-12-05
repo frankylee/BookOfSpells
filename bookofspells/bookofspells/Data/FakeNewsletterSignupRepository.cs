@@ -23,7 +23,7 @@ namespace bookofspells.Data
         public NewsletterSignup GetEmail(string email)
         {
             // find and return the first record with matching email
-            NewsletterSignup e = emails.FirstOrDefault(e => e.EmailAddress == email);
+            NewsletterSignup e = emails.FirstOrDefault(e => e.EmailAddress.Equals(email));
             return e;
         }
     }
