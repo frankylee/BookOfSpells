@@ -43,8 +43,6 @@ namespace bookofspells.Data
             GenerateNewsletterSignup(context);
             GenerateUser(context);
             GenerateSpell(context);
-            // save data
-            context.SaveChanges();
         }
 
 
@@ -59,6 +57,11 @@ namespace bookofspells.Data
                 Phone = "737-555-9993",
                 Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in."
             };
+            //if (context.ContactForm.Find(message.MessageID).MessageID == 0)
+            //    context.ContactForm.Add(message);
+            //else
+            //    context.ContactForm.Update(message);
+
             context.ContactForm.Update(message);
             context.SaveChanges();
         }
@@ -88,6 +91,14 @@ namespace bookofspells.Data
                     EmailAddress = "wilowe_shutes@bookofspells.com"
                 }
             };
+            //emails.ForEach(e =>
+            //{
+            //    if (context.NewsletterSignup.Find(e.EmailID).EmailID == 0)
+            //        context.NewsletterSignup.Add(e);
+            //    else
+            //        context.NewsletterSignup.Update(e);
+            //});
+
             emails.ForEach(e => context.NewsletterSignup.Update(e));
             context.SaveChanges();
         }
@@ -101,6 +112,14 @@ namespace bookofspells.Data
                 user2,
                 user3
             };
+            //users.ForEach(u =>
+            //{
+            //    if (context.User.Find(u.UserID).UserID == 0)
+            //        context.User.Add(u);
+            //    else
+            //        context.User.Update(u);
+            //});
+
             users.ForEach(u => context.User.Update(u));
             context.SaveChanges();
         }
@@ -225,7 +244,7 @@ namespace bookofspells.Data
 
                         Excepteur sint occaecat cupidatat non proident, sunt in. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                     Intention = "Knowledge",
-                    MagicType = "Black",
+                    MagicType = "White",
                     User = user2,
                     Filename = "devil-goat-with-sacred-geometry.png",
                 },
@@ -245,6 +264,15 @@ namespace bookofspells.Data
                     Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
                 },
             };
+
+            //spells.ForEach(s =>
+            //{
+            //    if (context.Spell.Find(s.SpellID).SpellID == 0)
+            //        context.Spell.Add(s);
+            //    else
+            //        context.Spell.Update(s);
+            //});
+
             spells.ForEach(s => context.Spell.Update(s));
             context.SaveChanges();
         }

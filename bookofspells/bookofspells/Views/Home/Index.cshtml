@@ -43,7 +43,7 @@
                         <h4 class="card-title">@ViewBag.Spell[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.Spell[i].Enchantment</p>
                         <div class="text-right mb-3">
-                            <a href="spellbook/enchantment?title=@ViewBag.Spell[i].Title" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                            <a asp-controller="spellbook" asp-action="enchantment" asp-route-id="@ViewBag.Spell[i].SpellID" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
                         </div>
                         <div class="text-uppercase small">
                             <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Spell[i].MagicType</span>

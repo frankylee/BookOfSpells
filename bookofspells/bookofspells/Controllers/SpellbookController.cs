@@ -72,31 +72,34 @@ namespace bookofspells.Controllers
         }
 
 
-
-        public IActionResult Enchantment(string title)
+        public IActionResult Enchantment(int id)
         {
-            Spell s;
-            // if no title is passed, display most recently created spell
-            if (title == null || title == "")
-                s = spellRepo.Spell.ToList().Last();
+            Spell spell;
+            // if no id is passed, display most recently created spell
+            if (id == 0)
+                spell = spellRepo.Spell.ToList().Last();
             else
-                s = spellRepo.GetSpellTitle(title);
+                spell = (from s in spellRepo.Spell
+                         where s.SpellID.Equals(id)
+                         select s).FirstOrDefault();
             // send to view
-            ViewBag.Spell = s;
+            ViewBag.Spell = spell;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Enchantment(string title, NewsletterSignup n)
+        public IActionResult Enchantment(int id, NewsletterSignup n)
         {
-            Spell s;
-            // if no title is passed, display most recently created spell
-            if (title == null || title == "")
-                s = spellRepo.Spell.ToList().Last();
+            Spell spell;
+            // if no id is passed, display most recently created spell
+            if (id == 0)
+                spell = spellRepo.Spell.ToList().Last();
             else
-                s = spellRepo.GetSpellTitle(title);
+                spell = (from s in spellRepo.Spell
+                         where s.SpellID.Equals(id)
+                         select s).FirstOrDefault();
             // send to view
-            ViewBag.Spell = s;
+            ViewBag.Spell = spell;
             ViewBag.Registration = n;
             // save to database
             signupRepo.AddSignup(n);

@@ -25,7 +25,7 @@
                         <h4 class="card-title">@ViewBag.White[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.White[i].Enchantment</p>
                         <div class="text-right mb-3">
-                            <a href="spellbook/enchantment?title=@ViewBag.White[i].Title" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                            <a asp-controller="spellbook" asp-action="enchantment" asp-route-id="@ViewBag.White[i].SpellID" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
                         </div>
                         <div class="text-uppercase small">
                             <span class="badge badge-pill badge-dark">@ViewBag.White[i].MagicType</span>
@@ -52,7 +52,7 @@
                         <h4 class="card-title">@ViewBag.Grey[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.Grey[i].Enchantment</p>
                         <div class="text-right mb-3">
-                            <a href="spellbook/enchantment?title=@ViewBag.Grey[i].Title" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                            <a asp-controller="spellbook" asp-action="enchantment" asp-route-id="@ViewBag.Grey[i].SpellID" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
                         </div>
                         <div class="text-uppercase small">
                             <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Grey[i].MagicType</span>
@@ -79,7 +79,7 @@
                         <h4 class="card-title">@ViewBag.Black[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.Black[i].Enchantment</p>
                         <div class="text-right mb-3">
-                            <a href="spellbook/enchantment?title=@ViewBag.Black[i].Title" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+                            <a asp-controller="spellbook" asp-action="enchantment" asp-route-id="@ViewBag.Black[i].SpellID" class="text-right">Read more &nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
                         </div>
                         <div class="text-uppercase small">
                             <span class="badge badge-pill bg-darkgray text-light">@ViewBag.Black[i].MagicType</span>

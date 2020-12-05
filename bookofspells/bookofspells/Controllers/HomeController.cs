@@ -88,37 +88,35 @@ namespace bookofspells.Controllers
             // search database
             if (search != null)
             {
-                // convert to lowercase for reliability
-                search = search.ToLower();
                 // search for user
                 results = (from s in spellRepo.Spell
-                           where s.User.Username.ToLower().Contains(search)
+                           where s.User.Username.Contains(search)
                            select s)
                            .OrderByDescending(s => s.SpellID)
                            .ToList();
                 // search magic type
                 if (results.Count == 0)
                     results = (from s in spellRepo.Spell
-                               where s.MagicType.ToLower().Contains(search)
+                               where s.MagicType.Contains(search)
                                select s)
                                .OrderByDescending(s => s.SpellID)
                                .ToList();
                 // search intention
                 if (results.Count == 0)
                     results = (from s in spellRepo.Spell
-                               where s.Intention.ToLower().Contains(search)
+                               where s.Intention.Contains(search)
                                select s).ToList();
                 // search title
                 if (results.Count == 0)
                     results = (from s in spellRepo.Spell
-                               where s.Title.ToLower().Contains(search)
+                               where s.Title.Contains(search)
                                select s)
                                .OrderByDescending(s => s.SpellID)
                                .ToList();
                 // search enchantment
                 if (results.Count == 0)
                     results = (from s in spellRepo.Spell
-                               where s.Enchantment.ToLower().Contains(search)
+                               where s.Enchantment.Contains(search)
                                select s)
                                .OrderByDescending(s => s.SpellID)
                                .ToList();
