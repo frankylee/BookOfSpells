@@ -11,7 +11,10 @@ namespace bookofspells.Models
         public string Enchantment { get; set; }
         public string Intention { get; set; }
         public string MagicType { get; set; }
+
+        public int UserID { get; set; }  // foreign key
         public User User { get; set; }
+
         public string Filename { get; set; }
     }
 }
