@@ -69,7 +69,7 @@ namespace bookofspellsTests
         {
             spellRepo.AddSpell(spell);
             // retrieve enchantment view
-            controller.Enchantment(spell.Title);
+            controller.Enchantment(spell.SpellID);
             // confirm enchantment retrieved
             Spell s = spellRepo.GetSpellTitle(spell.Title);
             Assert.Equal(spell.Title, s.Title);
