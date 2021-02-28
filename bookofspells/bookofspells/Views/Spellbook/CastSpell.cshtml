@@ -16,12 +16,14 @@
     <form id="createSpell" method="post">
         <div class="form-group">
             <label for="title" class="sr-only">Spellname</label>
-            <input type="text" asp-for="Title" class="form-control form-control-lg" id="title" placeholder="Spellname" required>
+            <input type="text" asp-for="Title" class="form-control form-control-lg" id="title" placeholder="Spellname">
+            <span class="text-danger small" asp-validation-for="Title"></span>
         </div>
 
         <div class="form-group mb-5">
             <label for="enchantment" class="sr-only">Written enchantment</label>
-            <textarea type="text" asp-for="Enchantment" class="form-control form-control-lg" id="enchantment" rows="13" placeholder="Written enchantment" required></textarea>
+            <textarea type="text" asp-for="Enchantment" class="form-control form-control-lg" id="enchantment" rows="13" placeholder="Written enchantment"></textarea>
+            <span class="text-danger small" asp-validation-for="Enchantment"></span>
         </div>
 
         <div class="form-group row mb-5">
@@ -29,35 +31,36 @@
                 <fieldset class="form-group">
                     <legend>Intention:</legend>
                     <div class="form-check small mb-1">
-                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Protection" id="protection" required>
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Protection" id="protection">
                         <label class="form-check-label" for="protection">
                             Protection
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Knowledge" id="knowledge" required>
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Knowledge" id="knowledge">
                         <label class="form-check-label" for="knowledge">
                             Knowledge
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Power" id="power" required>
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Power" id="power">
                         <label class="form-check-label" for="power">
                             Power
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Wealth" id="wealth" required>
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Wealth" id="wealth">
                         <label class="form-check-label" for="wealth">
                             Wealth
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Love" id="love" required>
+                        <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Love" id="love">
                         <label class="form-check-label" for="love">
                             Love
                         </label>
                     </div>
+                    <span class="text-danger small" asp-validation-for="Intention"></span>
                 </fieldset>
             </div>
 
@@ -65,23 +68,24 @@
                 <fieldset class="form-group">
                     <legend>Magic type:</legend>
                     <div class="form-check small mb-1">
-                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="Black" id="blackMagic" required>
+                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="Black" id="blackMagic">
                         <label class="form-check-label" for="blackMagic">
                             Black
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="White" id="whiteMagic" required>
+                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="White" id="whiteMagic">
                         <label class="form-check-label" for="whiteMagic">
                             White
                         </label>
                     </div>
                     <div class="form-check small mb-1">
-                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="Grey" id="greyMagic" required>
+                        <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="Grey" id="greyMagic">
                         <label class="form-check-label" for="greyMagic">
                             Grey
                         </label>
                     </div>
+                    <span class="text-danger small" asp-validation-for="MagicType"></span>
                 </fieldset>
             </div>
 
@@ -98,7 +102,8 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">&#64;</div>
                     </div>
-                    <input asp-for="User.Username" type="text" class="form-control" id="username" placeholder="Username" required>
+                    <input asp-for="User.Username" type="text" class="form-control" id="username" placeholder="Username">
+                    <span class="text-danger small" asp-validation-for="User.Username"></span>
                 </div>
             </div>
 
@@ -110,7 +115,8 @@
 </section>
 
 
-@if (ViewBag.Spell != null)
+@* TESTING *@
+@*@if (ViewBag.Spell != null)
 {
     @if (ViewBag.Spell.Title != null)
     {
@@ -119,6 +125,6 @@
         <p>@ViewBag.Spell.Intention</p>
         <p>@ViewBag.Spell.MagicType</p>
         <p>@ViewBag.Spell.User.Username</p>
-        @*<p>@ViewBag.Spell.FileName</p>*@
+        <p>@ViewBag.Spell.FileName</p>
     }
-}
+}*@

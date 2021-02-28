@@ -53,14 +53,17 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult Contact(ContactForm c, NewsletterSignup n)
         {
-            // save to database
-            if (c.Name != null)
-                contactRepo.AddMessage(c);
-            if (n.EmailAddress != null)
-                signupRepo.AddSignup(n);
-            // send to view
-            ViewBag.Message = c;
-            ViewBag.Registration = n;
+            if (ModelState.IsValid)
+            {
+                // save to database
+                if (c.Name != null)
+                    contactRepo.AddMessage(c);
+                if (n.EmailAddress != null)
+                    signupRepo.AddSignup(n);
+                // send to view
+                ViewBag.Message = c;
+                ViewBag.Registration = n;
+            }
             return View();
         }
 

@@ -54,19 +54,22 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult CastSpell(Spell s, NewsletterSignup n)
         {
-            // save to database & redirect
-            if (s.Title != null)
+            if (ModelState.IsValid)
             {
-                spellRepo.AddSpell(s);
-                return Redirect("Enchantment");
-            }
-            // return to view
-            if (n.EmailAddress != null)
-            {
-                signupRepo.AddSignup(n);
-                // send to view
-                ViewBag.Spell = s;
-                ViewBag.Registration = n;               
+                // save to database & redirect
+                if (s.Title != null)
+                {
+                    spellRepo.AddSpell(s);
+                    return Redirect("Enchantment");
+                }
+                // return to view
+                if (n.EmailAddress != null)
+                {
+                    signupRepo.AddSignup(n);
+                    // send to view
+                    ViewBag.Spell = s;
+                    ViewBag.Registration = n;
+                }
             }
             return View();
         }
