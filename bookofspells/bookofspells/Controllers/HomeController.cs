@@ -139,6 +139,18 @@ namespace bookofspells.Controllers
         }
 
 
+        //[HttpPost]
+        //public IActionResult Newsletter(NewsletterSignup n)
+        //{
+        //    if (n.EmailAddress != null)
+        //        signupRepo.AddSignup(n);
+        //    // send to view
+        //    ViewBag.Registration = n;
+        //    // This "works" but the page reloads at the top and does not display confirmation message
+        //    return RedirectToAction(Request.PathBase);
+        //}
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
