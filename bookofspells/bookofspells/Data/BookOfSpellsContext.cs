@@ -15,7 +15,7 @@ namespace bookofspells.Data
         public DbSet<User> User { get; set; }
 
 
-        // seed data on creation
+        // seed data upon database creation
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -94,7 +94,6 @@ namespace bookofspells.Data
                     Intention = "Protection",
                     MagicType = "Grey",
                     UserID = 1,
-                    //User = user1,
                     Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
                 },
 
@@ -110,7 +109,6 @@ namespace bookofspells.Data
                     Intention = "Wealth",
                     MagicType = "Black",
                     UserID = 2,
-                    //User = user2,
                     Filename = "devil-goat-with-sacred-geometry.png",
                 },
 
@@ -126,7 +124,6 @@ namespace bookofspells.Data
                     Intention = "Knowledge",
                     MagicType = "White",
                     UserID = 3,
-                    //User = user3,
                     Filename = "mandala_geometry_sacred_symbol_4242415.png",
                 },
 
@@ -142,7 +139,6 @@ namespace bookofspells.Data
                     Intention = "Love",
                     MagicType = "Grey",
                     UserID = 3,
-                    //User = user3,
                     Filename = "devil-goat-with-sacred-geometry.png",
                 },
 
@@ -160,7 +156,6 @@ namespace bookofspells.Data
                     Intention = "Protection",
                     MagicType = "White",
                     UserID = 1,
-                    //User = user1,
                     Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
                 },
 
@@ -174,7 +169,6 @@ namespace bookofspells.Data
                     Intention = "Power",
                     MagicType = "Black",
                     UserID = 2,
-                    //User = user2,
                     Filename = "mandala_geometry_sacred_symbol_4242415.png",
                 },
 
@@ -190,7 +184,6 @@ namespace bookofspells.Data
                     Intention = "Wealth",
                     MagicType = "Grey",
                     UserID = 3,
-                    //User = user3,
                     Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
                 },
 
@@ -206,7 +199,6 @@ namespace bookofspells.Data
                     Intention = "Knowledge",
                     MagicType = "White",
                     UserID = 2,
-                    //User = user2,
                     Filename = "devil-goat-with-sacred-geometry.png",
                 },
 
@@ -222,7 +214,6 @@ namespace bookofspells.Data
                     Intention = "Protection",
                     MagicType = "Black",
                     UserID = 1,
-                    //User = user1,
                     Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
                 }
             );

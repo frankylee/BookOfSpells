@@ -53,14 +53,17 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult Contact(ContactForm c, NewsletterSignup n)
         {
-            // save to database
-            if (c.Name != null)
-                contactRepo.AddMessage(c);
-            if (n.EmailAddress != null)
-                signupRepo.AddSignup(n);
-            // send to view
-            ViewBag.Message = c;
-            ViewBag.Registration = n;
+            if (ModelState.IsValid)
+            {
+                // save to database
+                if (c.Name != null)
+                    contactRepo.AddMessage(c);
+                if (n.EmailAddress != null)
+                    signupRepo.AddSignup(n);
+                // send to view
+                ViewBag.Message = c;
+                ViewBag.Registration = n;
+            }
             return View();
         }
 
@@ -134,6 +137,18 @@ namespace bookofspells.Controllers
             ViewBag.Registration = n;
             return View();
         }
+
+
+        //[HttpPost]
+        //public IActionResult Newsletter(NewsletterSignup n)
+        //{
+        //    if (n.EmailAddress != null)
+        //        signupRepo.AddSignup(n);
+        //    // send to view
+        //    ViewBag.Registration = n;
+        //    // This "works" but the page reloads at the top and does not display confirmation message
+        //    return RedirectToAction(Request.PathBase);
+        //}
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
