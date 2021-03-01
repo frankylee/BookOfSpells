@@ -1,6 +1,8 @@
 # Term Project Requirements
 **CS295N Web Development 2: ASP.NET**
 
+##### [View live on Azure](https://bookofspells.azurewebsites.net/)
+
 Your web site should meet the following requirements:
 
 ### 1. Rich Media
