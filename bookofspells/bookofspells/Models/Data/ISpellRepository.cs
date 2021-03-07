@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using bookofspells.Models;
 
-namespace bookofspells.Data
+namespace bookofspells.Models
 {
     public interface ISpellRepository
     {

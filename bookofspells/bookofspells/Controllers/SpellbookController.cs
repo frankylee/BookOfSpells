@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using bookofspells.Models;
-using bookofspells.Data;
 
 namespace bookofspells.Controllers
 {

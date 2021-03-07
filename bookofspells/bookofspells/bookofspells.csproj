@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Spellbook\" />
-    <Folder Include="Data\" />
+    <Folder Include="Models\Data\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />

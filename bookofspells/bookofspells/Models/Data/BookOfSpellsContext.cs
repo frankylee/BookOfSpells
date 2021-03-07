@@ -1,8 +1,7 @@
 ﻿using System;
-using bookofspells.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace bookofspells.Data
+namespace bookofspells.Models
 {
     public class BookOfSpellsContext : DbContext
     {

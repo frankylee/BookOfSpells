@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using bookofspells.Models;
 
-namespace bookofspells.Data
+namespace bookofspells.Models
 {
     public class SeedData
     {

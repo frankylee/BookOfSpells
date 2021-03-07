@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using bookofspells.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace bookofspells.Data
+namespace bookofspells.Models
 {
     public class SpellRepository : ISpellRepository
     {
