@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using bookofspells.Controllers;
-using bookofspells.Data;
 using bookofspells.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -45,7 +44,7 @@ namespace bookofspellsTests
                 Enchantment = "Lorem ipsum dolor sit amet.",
                 Intention = "Knowledge",
                 MagicType = "White",
-                User = new User() { Username = "Ravinia Blaque" },
+                User = new AppUser() { FirstName = "Ravinia", LastName = "Blaque" },
                 Filename = "xyzy.jpg"
             };
             spellRepo.AddSpell(spell);

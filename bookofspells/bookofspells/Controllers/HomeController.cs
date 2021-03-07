@@ -92,7 +92,7 @@ namespace bookofspells.Controllers
             {
                 // search for user
                 results = (from s in spellRepo.Spell
-                           where s.User.Username.Contains(search)
+                           where s.User.UserName.Contains(search)
                            select s)
                            .OrderByDescending(s => s.SpellID)
                            .ToList();

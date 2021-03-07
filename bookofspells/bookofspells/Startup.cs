@@ -7,6 +7,7 @@ using bookofspells.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,7 +36,17 @@ namespace bookofspells
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 services.AddDbContext<BookOfSpellsContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
             else
-                services.AddDbContext<BookOfSpellsContext>(options => options.UseSqlite(Configuration["ConnectionString:SQLite"]));
+                services.AddDbContext<BookOfSpellsContext>(
+                    options => options.UseSqlite(Configuration["ConnectionString:SQLite"])
+                    //.EnableSensitiveDataLogging()  // development only
+                );
+
+            // Add Identity service with default password options
+            services.AddIdentity<AppUser, IdentityRole>(options => {
+                // Require unique email address for user
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<BookOfSpellsContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +67,7 @@ namespace bookofspells
 
             app.UseRouting();
 
+            app.UseAuthentication(); // identity
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -65,7 +77,7 @@ namespace bookofspells
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            // Use SeedData if database is empty.
+            // Use SeedData if database is empty
             SeedData.Seed(ctx);
         }
     }

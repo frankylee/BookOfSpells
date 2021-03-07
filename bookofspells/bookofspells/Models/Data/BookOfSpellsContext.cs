@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace bookofspells.Models
 {
-    public class BookOfSpellsContext : DbContext
+    public class BookOfSpellsContext : IdentityDbContext<AppUser>
     {
         public BookOfSpellsContext(DbContextOptions<BookOfSpellsContext> options) : base(options) { }
 
@@ -11,7 +16,7 @@ namespace bookofspells.Models
         public DbSet<ContactForm> ContactForm { get; set; }
         public DbSet<NewsletterSignup> NewsletterSignup { get; set; }
         public DbSet<Spell> Spell { get; set; }
-        public DbSet<User> User { get; set; }
+        // TODO: Add new DbSet for Spell Comments
 
 
         // seed data upon database creation
@@ -19,6 +24,8 @@ namespace bookofspells.Models
         {
             base.OnModelCreating(modelBuilder);
 
+
+            // Seed contact form message
             modelBuilder.Entity<ContactForm>().HasData(
                 new ContactForm
                 {
@@ -30,6 +37,8 @@ namespace bookofspells.Models
                 }
             );
 
+
+            // Seed newsletter signup with emails
             modelBuilder.Entity<NewsletterSignup>().HasData(
                 new NewsletterSignup
                 {
@@ -53,171 +62,94 @@ namespace bookofspells.Models
                 }
             );
 
-            modelBuilder.Entity<User>().HasData(
-                new User
+
+            // Seed Identity User Roles: Administrator & User
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
                 {
-                    UserID = 1,
-                    Username = "raviniablaque",
-                    FirstName = "Ravinia",
-                    LastName = "Blaque",
-                    EmailAddress = "raviniablaque@bookofspells.com"
+                    Id = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR".ToUpper()
                 },
-                new User
+                new IdentityRole
                 {
-                    UserID = 2,
-                    Username = "trundae.sythe",
-                    FirstName = "Trundae",
-                    LastName = "Sythe",
-                    EmailAddress = "trundae.sythe@bookofspells.com"
-                },
-                new User
-                {
-                    UserID = 3,
-                    Username = "wilowe",
-                    FirstName = "Wilowe ",
-                    LastName = "Shutes",
-                    EmailAddress = "wilowe_shutes@bookofspells.com"
+                    Id = "028c47d8-4962-b826-5af0-e6483b49a0e1",
+                    Name = "User",
+                    NormalizedName = "USER".ToUpper()
                 }
             );
 
-            modelBuilder.Entity<Spell>().HasData(
-                new Spell
+
+            // Hash password before seeding user
+            var hasher = new PasswordHasher<AppUser>();
+
+            // Seed AppUsers 
+            modelBuilder.Entity<AppUser>().HasData(
+                new AppUser
                 {
-                    SpellID = 1,
-                    Title = "In Vitae Tempus Elementum",
-                    Enchantment = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.
-
-                        In vitae turpis massa sed elementum tempus egestas sed. Nunc aliquet bibendum enim facilisis gravida neque convallis. Commodo odio aenean sed adipiscing diam. Ornare massa eget egestas purus. Lacus sed turpis tincidunt id aliquet risus feugiat in. Bibendum ut tristique et egestas.
-
-                        Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. In hendrerit gravida rutrum quisque non tellus orci ac auctor.",
-                    Intention = "Protection",
-                    MagicType = "Grey",
-                    UserID = 1,
-                    Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
+                    Id = "846aef83-932c-a84b-8244-e836cfa9839d",
+                    UserName = "admin",
+                    NormalizedUserName = "ADMIN".ToUpper(),
+                    FirstName = "Muney",
+                    LastName = "Eclipse",
+                    Email = "admin@bookofspells.com",
+                    PasswordHash = hasher.HashPassword(null, "Secret1!")
                 },
-
-                new Spell
+                new AppUser
                 {
-                    SpellID = 2,
-                    Title = "Excepteur Sint Occaecat",
-                    Enchantment = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-                        Excepteur sint occaecat cupidatat non proident, sunt in. In vitae turpis massa sed elementum tempus egestas sed. Nunc aliquet bibendum enim facilisis gravida neque convallis. Commodo odio aenean sed adipiscing diam. Ornare massa eget egestas purus. Lacus sed turpis tincidunt id aliquet risus feugiat in.
-
-                        Bibendum ut tristique et egestas. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. In hendrerit gravida rutrum quisque non tellus orci ac auctor.",
-                    Intention = "Wealth",
-                    MagicType = "Black",
-                    UserID = 2,
-                    Filename = "devil-goat-with-sacred-geometry.png",
+                    Id = "1111xxxx-xxxx-1111-xxxx-1111xxxx1111",
+                    UserName = "raviniablaque",
+                    NormalizedUserName = "RAVINIABLAQUE".ToUpper(),
+                    FirstName = "Ravinia",
+                    LastName = "Blaque",
+                    Email = "raviniablaque@bookofspells.com",
+                    PasswordHash = hasher.HashPassword(null, "Secret1!")
                 },
-
-                new Spell
+                new AppUser
                 {
-                    SpellID = 3,
-                    Title = "Enim Ad Minim Veniam",
-                    Enchantment = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in. In vitae turpis massa sed elementum tempus egestas sed.
-
-                        Nunc aliquet bibendum enim facilisis gravida neque convallis. Commodo odio aenean sed adipiscing diam. Ornare massa eget egestas purus. Lacus sed turpis tincidunt id aliquet risus feugiat in. Bibendum ut tristique et egestas. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. In hendrerit gravida rutrum quisque non tellus orci ac auctor.",
-                    Intention = "Knowledge",
-                    MagicType = "White",
-                    UserID = 3,
-                    Filename = "mandala_geometry_sacred_symbol_4242415.png",
+                    Id = "2222xxxx-2222-xxxx-2222-xxxx2222xxxx",
+                    UserName = "trundae.sythe",
+                    NormalizedUserName = "trundae.sythe".ToUpper(),
+                    FirstName = "Trundae",
+                    LastName = "Sythe",
+                    Email = "trundae.sythe@bookofspells.com",
+                    PasswordHash = hasher.HashPassword(null, "Secret1!")
                 },
-
-                new Spell
+                new AppUser
                 {
-                    SpellID = 4,
-                    Title = "Aute Irure Dolor",
-                    Enchantment = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+                    Id = "3333xxxx-xxxx-xxxx-xxxx-xxxxXXXXxxxx",
+                    UserName = "wilowe",
+                    NormalizedUserName = "wilowe".ToUpper(),
+                    FirstName = "Wilowe ",
+                    LastName = "Shutes",
+                    Email = "wilowe_shutes@bookofspells.com",
+                    PasswordHash = hasher.HashPassword(null, "Secret1!")
+                }
+            );
 
-                        In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in. In vitae turpis massa sed elementum tempus egestas sed. Nunc aliquet bibendum enim facilisis gravida neque convallis. Commodo odio aenean sed adipiscing diam. Ornare massa eget egestas purus.
-
-                        Lacus sed turpis tincidunt id aliquet risus feugiat in. Bibendum ut tristique et egestas. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. In hendrerit gravida rutrum quisque non tellus orci ac auctor.",
-                    Intention = "Love",
-                    MagicType = "Grey",
-                    UserID = 3,
-                    Filename = "devil-goat-with-sacred-geometry.png",
+            // Seed AppUsers to AspNetUserRoles
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    RoleId = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
+                    UserId = "846aef83-932c-a84b-8244-e836cfa9839d"
                 },
-
-                new Spell
+                new IdentityUserRole<string>
                 {
-                    SpellID = 5,
-                    Title = "Hendrerit Gravida Rutrum",
-                    Enchantment = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
-
-                        Eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in. In vitae turpis massa sed elementum tempus egestas sed. Nunc aliquet bibendum enim facilisis gravida neque convallis.
-
-                        Commodo odio aenean sed adipiscing diam. Ornare massa eget egestas purus. Lacus sed turpis tincidunt id aliquet risus feugiat in. Bibendum ut tristique et egestas. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae.
-
-                        In hendrerit gravida rutrum quisque non tellus orci ac auctor.",
-                    Intention = "Protection",
-                    MagicType = "White",
-                    UserID = 1,
-                    Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
+                    RoleId = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
+                    UserId = "1111xxxx-xxxx-1111-xxxx-1111xxxx1111"
                 },
-
-                new Spell
+                new IdentityUserRole<string>
                 {
-                    SpellID = 6,
-                    Title = "Nunc Aliquet Bibendum",
-                    Enchantment = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in. In vitae turpis massa sed elementum tempus egestas sed.
-
-                        Nunc aliquet bibendum enim facilisis gravida neque convallis. Commodo odio aenean sed adipiscing diam. Ornare massa eget egestas purus. Lacus sed turpis tincidunt id aliquet risus feugiat in. Bibendum ut tristique et egestas. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. In hendrerit gravida rutrum quisque non tellus orci ac auctor.",
-                    Intention = "Power",
-                    MagicType = "Black",
-                    UserID = 2,
-                    Filename = "mandala_geometry_sacred_symbol_4242415.png",
+                    RoleId = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
+                    UserId = "2222xxxx-2222-xxxx-2222-xxxx2222xxxx"
                 },
-
-                new Spell
+                new IdentityUserRole<string>
                 {
-                    SpellID = 7,
-                    Title = "Magna Exercitation",
-                    Enchantment = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-                        Excepteur sint occaecat cupidatat non proident, sunt in. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                    Intention = "Wealth",
-                    MagicType = "Grey",
-                    UserID = 3,
-                    Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
-                },
-
-                new Spell
-                {
-                    SpellID = 8,
-                    Title = "Laboris Nisi ut Aliquip",
-                    Enchantment = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-                        Excepteur sint occaecat cupidatat non proident, sunt in. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                    Intention = "Knowledge",
-                    MagicType = "White",
-                    UserID = 2,
-                    Filename = "devil-goat-with-sacred-geometry.png",
-                },
-
-                new Spell
-                {
-                    SpellID = 9,
-                    Title = "Fringilla est Ullamcorper",
-                    Enchantment = @"Diam maecenas ultricies mi eget mauris pharetra et. Mi in nulla posuere sollicitudin aliquam ultrices sagittis. Purus non enim praesent elementum facilisis.
-
-                        Pellentesque pulvinar pellentesque habitant morbi tristique senectus. Nunc lobortis mattis aliquam faucibus purus in. Amet volutpat consequat mauris nunc.
-
-                        In aliquam sem fringilla ut morbi. Mus mauris vitae ultricies leo integer malesuada nunc. Nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Eget mi proin sed libero enim. Porta non pulvinar neque laoreet suspendisse.",
-                    Intention = "Protection",
-                    MagicType = "Black",
-                    UserID = 1,
-                    Filename = "mandala_sacred_ancient_geometry_vector_3732998.png",
+                    RoleId = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
+                    UserId = "3333xxxx-xxxx-xxxx-xxxx-xxxxXXXXxxxx"
                 }
             );
         }
-
     }
-
 }

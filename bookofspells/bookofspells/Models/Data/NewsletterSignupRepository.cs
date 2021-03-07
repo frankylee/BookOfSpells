@@ -26,7 +26,7 @@ namespace bookofspells.Models
         public void AddSignup(NewsletterSignup email)
         {
             // Confirm email is unique before adding
-            var uniqueEmail = context.NewsletterSignup.FirstOrDefault(e => e.EmailAddress.Equals(email));
+            var uniqueEmail = context.NewsletterSignup.FirstOrDefault(e => e.EmailAddress.Equals(email.EmailAddress));
             // Confirm email was not retreived
             if (uniqueEmail == null)
             {

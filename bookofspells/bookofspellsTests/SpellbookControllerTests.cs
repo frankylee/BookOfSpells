@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using bookofspells.Controllers;
-using bookofspells.Data;
 using bookofspells.Models;
 using Xunit;
 
@@ -33,7 +32,7 @@ namespace bookofspellsTests
                 Enchantment = "Lorem ipsum dolor sit amet.",
                 Intention = "Knowledge",
                 MagicType = "White",
-                User = new User() { Username = "Ravinia Blaque" },
+                User = new AppUser() { FirstName = "Ravinia", LastName = "Blaque" },
                 Filename = "xyzy.jpg"
             };
         }
@@ -60,7 +59,7 @@ namespace bookofspellsTests
             Assert.Equal(spell.Enchantment, s.Enchantment);
             Assert.Equal(spell.Intention, s.Intention);
             Assert.Equal(spell.MagicType, s.MagicType);
-            Assert.Equal(spell.User.Username, s.User.Username);
+            Assert.Equal(spell.User.UserName, s.User.UserName);
             Assert.Equal(spell.Filename, s.Filename);
         }
 
