@@ -7,8 +7,8 @@
     <h2>Login</h2>
 
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <form method="post" asp-controller="Account" asp-action="LogIn"
-          asp-route-returnAfterLoginUrl="@string.Format("{0}{1}", Context.Request.Path, Context.Request.QueryString)">
+
+    <form method="post" asp-controller="Account" asp-action="LogIn" asp-route-returnUrl="@Model.ReturnUrl">
         <div class="form-group row">
             <div class="col-sm-2"><label>Username:</label></div>
             <div class="col-sm-4">

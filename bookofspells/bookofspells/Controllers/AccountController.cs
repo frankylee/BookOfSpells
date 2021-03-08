@@ -76,20 +76,17 @@ namespace bookofspells.Controllers
 
 
         [HttpGet]
-        public IActionResult LogIn()//string returnAfterLoginUrl = "")
+        public IActionResult LogIn(string returnUrl)
         {
-            //var model = new LoginVM { ReturnUrl = returnAfterLoginUrl };
-            //return View(model);
-            return View();
+            var model = new LoginVM { ReturnUrl = returnUrl };
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> LogIn(LoginVM model)//, string returnAfterLoginUrl = "")
+        public async Task<IActionResult> LogIn(LoginVM model)
         {
             if (ModelState.IsValid)
             {
-                //model.ReturnUrl = returnAfterLoginUrl;
-
                 var result = await signInManager.PasswordSignInAsync(
                     model.UserName,
                     model.Password,

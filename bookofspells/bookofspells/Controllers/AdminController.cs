@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace bookofspells.Controllers
 {
-    [Authorize(Roles = "Administrator")]
-    [Area("Admin")]
+    [Authorize(Roles = "Administrator")] // TODO: change to Admin
+    //[Area("Admin")]
     public class AdminController : Controller
     {
         private UserManager<AppUser> userManager;
@@ -119,7 +119,7 @@ namespace bookofspells.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToAdmin(string id)
         {
-            IdentityRole adminRole = await roleManager.FindByNameAsync("Admin");
+            IdentityRole adminRole = await roleManager.FindByNameAsync("Administrator");  // TODO: CHANGE TO ADMIN
             if (adminRole == null)
             {
                 TempData["message"] = "Admin role does not exist. "
@@ -137,8 +137,12 @@ namespace bookofspells.Controllers
         public async Task<IActionResult> RemoveFromAdmin(string id)
         {
             AppUser user = await userManager.FindByIdAsync(id);
-            var result = await userManager.RemoveFromRoleAsync(user, "Admin");
-            if (result.Succeeded) { }
+            var result = await userManager.RemoveFromRoleAsync(user, "Administrator");  // TODO: CHANGE TO ADMIN
+            // Automatically add to User role
+            if (result.Succeeded) {
+                IdentityRole userRole = await roleManager.FindByNameAsync("User");
+                await userManager.AddToRoleAsync(user, userRole.Name);
+            }
             return RedirectToAction("Index");
         }
 
@@ -154,7 +158,7 @@ namespace bookofspells.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAdminRole()
         {
-            var result = await roleManager.CreateAsync(new IdentityRole("Admin"));
+            var result = await roleManager.CreateAsync(new IdentityRole("Administrator"));  // TODO: CHANGE TO ADMIN
             if (result.Succeeded) { }
             return RedirectToAction("Index");
         }
