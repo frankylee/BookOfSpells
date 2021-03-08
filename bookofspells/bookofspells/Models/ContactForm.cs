@@ -13,6 +13,9 @@ namespace bookofspells.Models
         [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Name may not contain special characters.")]
         public string Name { get; set; }
 
+        //[RegularExpression(@"^[\w ]+$", ErrorMessage = "Coven name may not contain special characters.")]
+        //public string Coven { get; set; }
+
         [Required(ErrorMessage = "Email address cannot be empty.")]
         [StringLength(254, MinimumLength = 5, ErrorMessage = "Email address must be 5-254 characters.")]
         [RegularExpression(@"^[a-zA-Z]+([a-zA-Z0-9]?[_\.]??)+[a-zA-Z0-9]+@[a-zA-Z]+([a-zA-Z0-9]?[-]??)+\.[a-zA-Z]+$",

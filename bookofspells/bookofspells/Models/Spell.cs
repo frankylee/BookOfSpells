@@ -22,8 +22,7 @@ namespace bookofspells.Models
         [Required(ErrorMessage = "Magic type must be chosen.")]
         public string MagicType { get; set; }
 
-        public int UserID { get; set; }  // foreign key
-        public User User { get; set; }
+        public AppUser User { get; set; }
 
         public string Filename { get; set; }
     }

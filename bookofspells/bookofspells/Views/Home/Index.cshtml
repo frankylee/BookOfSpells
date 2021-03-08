@@ -38,7 +38,9 @@
         {
             <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="~/img/@ViewBag.Spell[i].Filename" alt="Spell image" aria-hidden="true">
+                    <a asp-controller="spellbook" asp-action="enchantment" asp-route-id="@ViewBag.Spell[i].SpellID">
+                        <img class="card-img-top" src="~/img/@ViewBag.Spell[i].Filename" alt="Spell image" aria-hidden="true">
+                    </a>
                     <div class="card-body">
                         <h4 class="card-title">@ViewBag.Spell[i].Title</h4>
                         <p class="card-text overflow">@ViewBag.Spell[i].Enchantment</p>
@@ -68,3 +70,5 @@
         </a>
     </div>
 </section>
+
+<partial name="_NewsletterSignupPartial" />

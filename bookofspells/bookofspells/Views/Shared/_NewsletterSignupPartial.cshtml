@@ -1,0 +1,24 @@
+﻿@model NewsletterSignup;
+
+<section id="newsletterSignup" class="mx-sm-3 mb-5">
+    <div class="jumbotron bg-darkgray text-center text-light">
+        <div class="row align-items-center mx-0 px-sm-5">
+            <div class="col-12">
+                <p class="h2 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+            </div>
+            <div class="col-12">
+                <form method="post" class="input-group justify-content-center" asp-controller="home" asp-action="newsletter">
+                    <input type="email" asp-for="EmailAddress" class="form-control" placeholder="Email" aria-label="Email address" required>
+                    <div class="input-group-append">
+                        <button class="btn bg-lightgray" type="submit">Signup</button>
+                    </div>
+                </form>
+
+                @if (TempData["RegistrationAddress"] != null)
+                {
+                    <p class="h3 mt-4">Registration successful!</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
