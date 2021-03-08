@@ -14,13 +14,13 @@
 
 <section class="container mb-5">
     <form id="createSpell" method="post">
-        <div class="form-group">
+        <div class="form-group small">
             <label for="title" class="sr-only">Spellname</label>
             <input type="text" asp-for="Title" class="form-control form-control-lg" id="title" placeholder="Spellname">
             <span class="text-danger small" asp-validation-for="Title"></span>
         </div>
 
-        <div class="form-group mb-5">
+        <div class="form-group small mb-5">
             <label for="enchantment" class="sr-only">Written enchantment</label>
             <textarea type="text" asp-for="Enchantment" class="form-control form-control-lg" id="enchantment" rows="13" placeholder="Written enchantment"></textarea>
             <span class="text-danger small" asp-validation-for="Enchantment"></span>
@@ -28,7 +28,7 @@
 
         <div class="form-group row mb-5">
             <div class="col-6 col-md-4 mb-4">
-                <fieldset class="form-group">
+                <fieldset class="form-group small">
                     <legend>Intention:</legend>
                     <div class="form-check small mb-1">
                         <input asp-for="Intention" class="form-check-input mt-2" type="radio" value="Protection" id="protection">
@@ -65,7 +65,7 @@
             </div>
 
             <div class="col-6 col-md-4 mb-4">
-                <fieldset class="form-group">
+                <fieldset class="form-group small">
                     <legend>Magic type:</legend>
                     <div class="form-check small mb-1">
                         <input asp-for="MagicType" class="form-check-input mt-2" type="radio" value="Black" id="blackMagic">

@@ -51,7 +51,7 @@ namespace bookofspells.Controllers
                 // Add spell to the database
                 spellRepo.AddSpell(s);
                 // Redirect user to view their cast spell
-                return LocalRedirect("Enchantment");  // changed from Redirect("Enchantment")
+                return Redirect("Enchantment"); 
             }
             return View();
         }
