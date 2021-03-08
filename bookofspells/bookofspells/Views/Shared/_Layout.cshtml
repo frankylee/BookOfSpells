@@ -34,43 +34,48 @@
                         </li>
                     </ul>
 
-                    @*<ul class="navbar-nav ml-auto">*@
+                    <ul class="navbar-nav ml-auto">
                         <!-- Login buttons and links -->
-                        @*@using Microsoft.AspNetCore.Identity
-                        @inject SignInManager<User> signInManager
+                        @using Microsoft.AspNetCore.Identity
+                        @inject SignInManager<AppUser> signInManager
+                        
                         @if (signInManager.IsSignedIn(User))
                         {
-                            // signed-in user - Log Out button and username
+                            // admin user - link to admin page
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Admin" asp-area="">
+                                        <span class="fas fa-cog"></span>&nbsp;Admin
+                                    </a>
+                                </li>
+                            }
+                            // signed-in user - profile and logout pages
                             <li class="nav-item">
-                                <form method="post" asp-action="LogOut" asp-controller="Account"
-                                      asp-area="">
-                                    <input type="submit" value="Log Out"
-                                           class="btn btn-outline-light" />
-                                    <span class="text-light">@User.Identity.Name</span>
-                                </form>
+                                <a class="nav-link" asp-action="Index" asp-controller="Account" asp-area="">
+                                    <span class="fas fa-user"></span>&nbsp;Account
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="LogOut" asp-controller="Account" asp-area="">
+                                    <span class="fas fa-sign-out"></span>&nbsp;Logout
+                                </a>
                             </li>
                         }
                         else
                         {
-                            var action = ViewContext.RouteData.Values["action"]?.ToString();
                             // anonymous user - Register link and Log In button
-                            <li class="nav-item @Nav.Active("Register", action)">
-                                <a asp-action="Register" asp-controller="Account"
-                                   asp-area="" class="nav-link">
-                                    <span class="fas fa-edit"></span>&nbsp;Register
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Register" asp-controller="Account" asp-area="">
+                                    <span class="fas fa-user-plus"></span>&nbsp;Register
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a asp-action="Login" asp-controller="Account"
-                                   asp-area="" class="btn btn-outline-light">Log In</a>
+                                <a class="nav-link" asp-action="Login" asp-controller="Account" asp-area="">Log In</a>
                             </li>
                         }
-                        <li class="nav-item @Nav.Active("Admin", current)">
-                            <a class="nav-link" asp-action="Index" asp-controller="Book" asp-area="Admin">
-                                <span class="fas fa-cog"></span>&nbsp;Admin
-                            </a>
-                        </li>
-                    </ul>*@
+                    </ul>
+
                     <form asp-controller="home" asp-action="search" method="post" class="form-inline my-2 my-lg-0">
                         <input name="search" class="form-control ml-sm-2" type="search" placeholder="Search" aria-label="Search">
                     </form>
@@ -87,7 +92,9 @@
     </main>
 
 
+
     <partial name="_NewsletterSignupPartial" />
+
 
 
     <footer class="border-top text-muted small pt-4 mb-4">

@@ -68,7 +68,7 @@ namespace bookofspells.Models
                 new IdentityRole
                 {
                     Id = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
-                    Name = "Administrator",
+                    Name = "Administrator",                        // TODO: RENAME TO ADMIN
                     NormalizedName = "ADMINISTRATOR".ToUpper()
                 },
                 new IdentityRole
@@ -136,17 +136,17 @@ namespace bookofspells.Models
                 },
                 new IdentityUserRole<string>
                 {
-                    RoleId = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
+                    RoleId = "028c47d8-4962-b826-5af0-e6483b49a0e1",
                     UserId = "1111xxxx-xxxx-1111-xxxx-1111xxxx1111"
                 },
                 new IdentityUserRole<string>
                 {
-                    RoleId = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
+                    RoleId = "028c47d8-4962-b826-5af0-e6483b49a0e1",
                     UserId = "2222xxxx-2222-xxxx-2222-xxxx2222xxxx"
                 },
                 new IdentityUserRole<string>
                 {
-                    RoleId = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
+                    RoleId = "028c47d8-4962-b826-5af0-e6483b49a0e1",
                     UserId = "3333xxxx-xxxx-xxxx-xxxx-xxxxXXXXxxxx"
                 }
             );

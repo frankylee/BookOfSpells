@@ -64,8 +64,8 @@ namespace bookofspells.Controllers
             if (ModelState.IsValid)
             {
                 List<Spell> results = null;
-                // search database
-                if (search != null)
+                // Check if search is empty or whitespace
+                if (search != null && search.Trim() != "")
                 {
                     // search for user
                     results = (from s in spellRepo.Spell
@@ -116,6 +116,9 @@ namespace bookofspells.Controllers
         [HttpPost]
         public IActionResult Newsletter(NewsletterSignup n, string returnUrl)
         {
+            // Source for help with returnUrl
+            // https://stackoverflow.com/questions/54014485/how-can-i-redirect-to-the-view-which-called-another-action-in-net-core-mvc
+
             if (ModelState.IsValid)
             {
                 // save to database

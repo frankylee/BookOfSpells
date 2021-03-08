@@ -4,15 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using bookofspells.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace bookofspells.Controllers
 {
     public class SpellbookController : Controller
     {
+        private UserManager<AppUser> userManager;
+        private SignInManager<AppUser> signInManager;
         ISpellRepository spellRepo;
 
-        public SpellbookController(ISpellRepository s)
+        public SpellbookController(UserManager<AppUser> userMngr, SignInManager<AppUser> signInMngr, ISpellRepository s)
         {
+            userManager = userMngr;
+            signInManager = signInMngr;
             spellRepo = s;
         }
 
@@ -28,22 +34,24 @@ namespace bookofspells.Controllers
         }
 
 
+        [Authorize]
         public IActionResult CastSpell()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult CastSpell(Spell s)
+        public async Task<IActionResult> CastSpell(Spell s)
         {
             if (ModelState.IsValid)
             {
-                // save to database & redirect
-                if (s.Title != null)
-                {
-                    spellRepo.AddSpell(s);
-                    return LocalRedirect("Enchantment");  // changed from Redirect("Enchantment")
-                }
+                // Add logged in user to the model
+                s.User = await userManager.GetUserAsync(User);
+                // Add spell to the database
+                spellRepo.AddSpell(s);
+                // Redirect user to view their cast spell
+                return LocalRedirect("Enchantment");  // changed from Redirect("Enchantment")
             }
             return View();
         }
