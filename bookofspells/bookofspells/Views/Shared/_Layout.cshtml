@@ -1,11 +1,11 @@
-﻿@model NewsletterSignup;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Book of Spells &amp; Illumination</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
@@ -87,31 +87,7 @@
     </main>
 
 
-    <section id="newsletterSignup" class="mx-sm-3 mb-5">
-        <div class="jumbotron bg-darkgray text-center text-light">
-            <div class="row align-items-center mx-0 px-sm-5">
-                <div class="col-12">
-                    <p class="h2 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                </div>
-                <div class="col-12">
-                    @*<form method="post" asp-controller="home" asp-action="newsletter" class="input-group justify-content-center">*@
-                    <form method="post" class="input-group justify-content-center">
-                        <input type="email" asp-for="EmailAddress" class="form-control" placeholder="Email" aria-label="Email address" required>
-                        <div class="input-group-append">
-                            <button class="btn bg-lightgray" type="submit">Signup</button>
-                        </div>
-                    </form>
-                    @if (ViewBag.Registration != null)
-                     {
-                        @if (ViewBag.Registration.EmailAddress != null)
-                         {
-                            <p class="h3 mt-4">Registration successful!</p>
-                         }
-                     }
-                </div>
-            </div>
-        </div>
-    </section>
+    <partial name="_NewsletterSignupPartial" />
 
 
     <footer class="border-top text-muted small pt-4 mb-4">
@@ -157,13 +133,11 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
-    
-    @if (ViewBag.Registration != null)
+
+    <!-- The following script forces the page to keep Newsletter Signup messages within view -->
+    @if (TempData["RegistrationAddress"] != null)
     {
-        if (ViewBag.Registration.EmailAddress != null)
-        {
-            <script>jumpTo('newsletterSignup');</script>
-        }
+        <script>jumpTo('newsletterSignup');</script>
     }
 </body>
 </html>

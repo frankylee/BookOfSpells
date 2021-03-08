@@ -31,18 +31,6 @@ namespace bookofspells.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Index(NewsletterSignup n)
-        {
-            List<Spell> s = spellRepo.Spell.OrderByDescending(s => s.SpellID).ToList();
-            // send to view
-            ViewBag.Spell = s;
-            ViewBag.Registration = n;
-            // save to database
-            signupRepo.AddSignup(n);
-            return View();
-        }
-
 
         public IActionResult Contact()
         {
@@ -50,18 +38,15 @@ namespace bookofspells.Controllers
         }
 
         [HttpPost]
-        public IActionResult Contact(ContactForm c, NewsletterSignup n)
+        public IActionResult Contact(ContactForm c)
         {
             if (ModelState.IsValid)
             {
                 // save to database
                 if (c.Name != null)
                     contactRepo.AddMessage(c);
-                if (n.EmailAddress != null)
-                    signupRepo.AddSignup(n);
                 // send to view
                 ViewBag.Message = c;
-                ViewBag.Registration = n;
             }
             return View();
         }
@@ -72,82 +57,76 @@ namespace bookofspells.Controllers
             return View();
         }
 
+
         [HttpPost]
-        public IActionResult Privacy(NewsletterSignup n)
+        public IActionResult Search(string search)
         {
-            // send to view
-            ViewBag.Registration = n;
-            // save to database
-            signupRepo.AddSignup(n);
+            if (ModelState.IsValid)
+            {
+                List<Spell> results = null;
+                // search database
+                if (search != null)
+                {
+                    // search for user
+                    results = (from s in spellRepo.Spell
+                               where s.User.UserName.Contains(search)
+                               select s)
+                               .OrderByDescending(s => s.SpellID)
+                               .ToList();
+                    // search magic type
+                    if (results.Count == 0)
+                        results = (from s in spellRepo.Spell
+                                   where s.MagicType.Contains(search)
+                                   select s)
+                                   .OrderByDescending(s => s.SpellID)
+                                   .ToList();
+                    // search intention
+                    if (results.Count == 0)
+                        results = (from s in spellRepo.Spell
+                                   where s.Intention.Contains(search)
+                                   select s).ToList();
+                    // search title
+                    if (results.Count == 0)
+                        results = (from s in spellRepo.Spell
+                                   where s.Title.Contains(search)
+                                   select s)
+                                   .OrderByDescending(s => s.SpellID)
+                                   .ToList();
+                    // search enchantment
+                    if (results.Count == 0)
+                        results = (from s in spellRepo.Spell
+                                   where s.Enchantment.Contains(search)
+                                   select s)
+                                   .OrderByDescending(s => s.SpellID)
+                                   .ToList();
+                    int num = results.Count == 0 ? 0 : results.Count;
+                    ViewBag.Message = "Your search for " + search + " yielded " + num + " results.";
+                }
+                else
+                {
+                    ViewBag.Message = "You did not enter a valid search. Please try again.";
+                }
+                // send to view
+                ViewBag.Result = results;
+            }
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult Search(string search, NewsletterSignup n)
+        public IActionResult Newsletter(NewsletterSignup n, string returnUrl)
         {
-            List<Spell> results = null;
-            // search database
-            if (search != null)
+            if (ModelState.IsValid)
             {
-                // search for user
-                results = (from s in spellRepo.Spell
-                           where s.User.UserName.Contains(search)
-                           select s)
-                           .OrderByDescending(s => s.SpellID)
-                           .ToList();
-                // search magic type
-                if (results.Count == 0)
-                    results = (from s in spellRepo.Spell
-                               where s.MagicType.Contains(search)
-                               select s)
-                               .OrderByDescending(s => s.SpellID)
-                               .ToList();
-                // search intention
-                if (results.Count == 0)
-                    results = (from s in spellRepo.Spell
-                               where s.Intention.Contains(search)
-                               select s).ToList();
-                // search title
-                if (results.Count == 0)
-                    results = (from s in spellRepo.Spell
-                               where s.Title.Contains(search)
-                               select s)
-                               .OrderByDescending(s => s.SpellID)
-                               .ToList();
-                // search enchantment
-                if (results.Count == 0)
-                    results = (from s in spellRepo.Spell
-                               where s.Enchantment.Contains(search)
-                               select s)
-                               .OrderByDescending(s => s.SpellID)
-                               .ToList();
-                int num = results.Count == 0 ? 0 : results.Count;
-                ViewBag.Message = "Your search for " + search + " yielded " + num + " results.";
+                // save to database
+                if (n.EmailAddress != null)
+                    signupRepo.AddSignup(n);
+                // send to view
+                TempData["RegistrationAddress"] = n.EmailAddress;
             }
-            else
-            {
-                ViewBag.Message = "You did not enter a valid search. Please try again.";
-            }
-            if (n.EmailAddress != null)
-                signupRepo.AddSignup(n);
-            // send to view
-            ViewBag.Result = results;
-            ViewBag.Registration = n;
-            return View();
+            // Redirect to returnUrl
+            return LocalRedirect(returnUrl);
         }
-
-
-        //[HttpPost]
-        //public IActionResult Newsletter(NewsletterSignup n)
-        //{
-        //    if (n.EmailAddress != null)
-        //        signupRepo.AddSignup(n);
-        //    // send to view
-        //    ViewBag.Registration = n;
-        //    // This "works" but the page reloads at the top and does not display confirmation message
-        //    return RedirectToAction(Request.PathBase);
-        //}
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
