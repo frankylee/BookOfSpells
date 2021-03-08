@@ -7,8 +7,7 @@
                 <p class="h2 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
             </div>
             <div class="col-12">
-                <form method="post" class="input-group justify-content-center" asp-controller="home" asp-action="newsletter" 
-                      asp-route-returnUrl="@string.Format("{0}{1}", Context.Request.Path, Context.Request.QueryString)">
+                <form method="post" class="input-group justify-content-center" asp-controller="home" asp-action="newsletter">
                     <input type="email" asp-for="EmailAddress" class="form-control" placeholder="Email" aria-label="Email address" required>
                     <div class="input-group-append">
                         <button class="btn bg-lightgray" type="submit">Signup</button>

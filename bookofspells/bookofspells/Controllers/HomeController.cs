@@ -114,11 +114,8 @@ namespace bookofspells.Controllers
 
 
         [HttpPost]
-        public IActionResult Newsletter(NewsletterSignup n, string returnUrl)
+        public IActionResult Newsletter(NewsletterSignup n)
         {
-            // Source for help with returnUrl
-            // https://stackoverflow.com/questions/54014485/how-can-i-redirect-to-the-view-which-called-another-action-in-net-core-mvc
-
             if (ModelState.IsValid)
             {
                 // save to database
@@ -128,7 +125,7 @@ namespace bookofspells.Controllers
                 TempData["RegistrationAddress"] = n.EmailAddress;
             }
             // Redirect to returnUrl
-            return LocalRedirect(returnUrl);
+            return RedirectToAction("Index", "Home");
         }
 
 
