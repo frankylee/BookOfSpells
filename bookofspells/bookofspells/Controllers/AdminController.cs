@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace bookofspells.Controllers
 {
-    [Authorize(Roles = "Administrator")] // TODO: change to Admin
+    [Authorize(Roles = "Administrator")] 
     //[Area("Admin")]
     public class AdminController : Controller
     {
@@ -119,7 +119,7 @@ namespace bookofspells.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToAdmin(string id)
         {
-            IdentityRole adminRole = await roleManager.FindByNameAsync("Administrator");  // TODO: CHANGE TO ADMIN
+            IdentityRole adminRole = await roleManager.FindByNameAsync("Administrator");  
             if (adminRole == null)
             {
                 TempData["message"] = "Admin role does not exist. "
@@ -137,7 +137,7 @@ namespace bookofspells.Controllers
         public async Task<IActionResult> RemoveFromAdmin(string id)
         {
             AppUser user = await userManager.FindByIdAsync(id);
-            var result = await userManager.RemoveFromRoleAsync(user, "Administrator");  // TODO: CHANGE TO ADMIN
+            var result = await userManager.RemoveFromRoleAsync(user, "Administrator");  
             // Automatically add to User role
             if (result.Succeeded) {
                 IdentityRole userRole = await roleManager.FindByNameAsync("User");
@@ -158,7 +158,7 @@ namespace bookofspells.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAdminRole()
         {
-            var result = await roleManager.CreateAsync(new IdentityRole("Administrator"));  // TODO: CHANGE TO ADMIN
+            var result = await roleManager.CreateAsync(new IdentityRole("Administrator"));  
             if (result.Succeeded) { }
             return RedirectToAction("Index");
         }
