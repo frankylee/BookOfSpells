@@ -12,7 +12,7 @@ tarballs/
 test-results/
 
 # database connection
-*[Ss]ettings.json
+*app[Ss]ettings.json
 *[Ss]ettings.Development.json
 
 # Mac bundle stuff
