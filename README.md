@@ -40,12 +40,6 @@ Use Zap to test your app. Do these tests on your own machine, not on a public we
 ### 7. Publish to a server
 Publish your web app to Azure or some other web host.
 
-### 8. Load testing
-Use jMeter to load-test your app. Test your web app running on the internet, not on your development machine.
-- The script should include login and search.
-- Provide a document containing screen shots of the results.
-- Provide your testing script.
-
 **Notes**<br>
 The term project must be different from the web app you used in your weekly lab assignments.
 Good coding practices, such as using unit tests, are expected in the term project. 
