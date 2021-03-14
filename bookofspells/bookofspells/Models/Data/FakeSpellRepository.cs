@@ -10,7 +10,6 @@ namespace bookofspells.Models
         // instance variables
         private readonly List<Spell> spells = new List<Spell>();
 
-
         // cast List object as IQueryable
         public IQueryable<Spell> Spell { get { return spells.AsQueryable(); } }
 
@@ -18,9 +17,10 @@ namespace bookofspells.Models
         public void AddSpell(Spell spell)
         {
             // simulate db primary key
-            spell.SpellID = spells.Count;
+            spell.SpellID = spells.Count + 1;
             spells.Add(spell);
         }
+
 
         public Spell GetSpellTitle(string title)
         {
