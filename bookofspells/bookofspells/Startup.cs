@@ -82,16 +82,16 @@ namespace bookofspells
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //app.Use(async (ctx, next) =>
-            //{
-            //    // Prevent clickjacking by setting X-Frame-Options at the code level;
-            //    // use this header to ensure content cannot be iframed
-            //    // X-Frame-Options Header Not Set 
-            //    ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
-            //    // X-Content-Type-Options Header Missing
-            //    ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-            //    await next();
-            //});
+            app.Use(async (ctx, next) =>
+            {
+                // Prevent clickjacking by setting X-Frame-Options at the code level;
+                // use this header to ensure content cannot be iframed
+                // X-Frame-Options Header Not Set 
+                ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                // X-Content-Type-Options Header Missing
+                ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                await next();
+            });
 
             // Use SeedData if database is empty
             SeedData.Seed(ctx);
