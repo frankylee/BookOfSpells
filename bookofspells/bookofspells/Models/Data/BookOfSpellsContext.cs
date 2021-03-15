@@ -16,7 +16,6 @@ namespace bookofspells.Models
         public DbSet<ContactForm> ContactForm { get; set; }
         public DbSet<NewsletterSignup> NewsletterSignup { get; set; }
         public DbSet<Spell> Spell { get; set; }
-        // TODO: Add new DbSet for Spell Comments
 
 
         // seed data upon database creation
@@ -68,7 +67,7 @@ namespace bookofspells.Models
                 new IdentityRole
                 {
                     Id = "93b6f9c6-826a-3b54-53ae-e9f8c562fea8",
-                    Name = "Administrator",                        // TODO: RENAME TO ADMIN
+                    Name = "Administrator",                       
                     NormalizedName = "ADMINISTRATOR".ToUpper()
                 },
                 new IdentityRole

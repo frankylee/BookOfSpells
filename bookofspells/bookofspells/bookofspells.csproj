@@ -22,4 +22,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="BookOfSpells.db-shm" />
+    <None Remove="BookOfSpells.db-wal" />
+  </ItemGroup>
 </Project>
